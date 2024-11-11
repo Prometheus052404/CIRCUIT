@@ -1,6 +1,6 @@
 #include "NOTGateIC.hpp"
 
-NOTGateIC :: NOTGateIC() : IC(14, 14, 7) {
+NOTGateIC :: NOTGateIC() : IC(14, 14, 7, "NOT") {   
     cout << "NOTGateIC (Hex Inverter) created with 14 pins, VCC on pin 14, GND on pin 7." << endl;
 }
 

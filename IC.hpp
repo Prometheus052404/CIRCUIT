@@ -10,6 +10,7 @@ class IC {
     friend class Breadboard;
 
     protected:
+        string name;          // Name of the IC
         int* pins;            // Dynamic array to hold pin values
         int pinCount;         // Number of pins
         int vccPin;           // VCC pin number
@@ -18,7 +19,7 @@ class IC {
         bool groundConnected;
 
     public:
-        IC(int pinCount, int vccPin, int groundPin);
+        IC(int pinCount, int vccPin, int groundPin, const string& name = "Generic IC");
         virtual ~IC();
 
         void connectVCC();

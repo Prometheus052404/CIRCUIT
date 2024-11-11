@@ -9,17 +9,12 @@
 
 int main() {
     Breadboard breadboard;
-    NANDGateIC nandGateIC;
-    NORGateIC norGateIC;
-    XNORGateIC xnorGateIC;
+    
     ANDGateIC andGateIC;
     ORGateIC orGateIC;
     XORGateIC xorGateIC;
     NOTGateIC notGateIC;
 
-    breadboard + nandGateIC;
-    breadboard + norGateIC;
-    breadboard + xnorGateIC;
     breadboard + andGateIC;
     breadboard + orGateIC;
     breadboard + xorGateIC;
@@ -28,18 +23,12 @@ int main() {
     breadboard.display();
     breadboard.setPowerRail(1, true);
     breadboard.setPowerRail(0, true);
-    breadboard.connectICPower(nandGateIC);
-    breadboard.connectICPower(norGateIC);
-    breadboard.connectICPower(xnorGateIC);
     breadboard.connectICPower(andGateIC);
     breadboard.connectICPower(orGateIC);
     breadboard.connectICPower(xorGateIC);
     breadboard.connectICPower(notGateIC);
 
     try {
-        nandGateIC.simulate();
-        norGateIC.simulate();
-        xnorGateIC.simulate();
         andGateIC.simulate();
         orGateIC.simulate();
         xorGateIC.simulate();
@@ -51,9 +40,6 @@ int main() {
     breadboard.display();
     breadboard.setPowerRail(1, false);
     breadboard.setPowerRail(0, false);
-    breadboard.removeIC(nandGateIC);
-    breadboard.removeIC(norGateIC);
-    breadboard.removeIC(xnorGateIC);
     breadboard.removeIC(andGateIC);
     breadboard.removeIC(orGateIC);
     breadboard.removeIC(xorGateIC);
