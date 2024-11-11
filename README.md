@@ -183,8 +183,10 @@ int main()
     
     return 0;
 }
-
 ```
+
+## Future Implementation
+In future, a breadboard class is planned to be implemetated, along various features of integrating the IC and the Breadboard class.
 
 ## License
 This project, **Digital Circuit Simulator**, was created by **Harith Yerragolam** and **Parth Pandey**.
