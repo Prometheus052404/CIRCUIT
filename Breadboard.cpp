@@ -22,19 +22,25 @@ Breadboard::Breadboard() : icCount(0) {
 }
 
 bool Breadboard::isSpaceAvailable(int rowsNeeded, int& startRow) const {
+    // Check space across the rows for columns E and F
     for (int i = 0; i <= ROWS - rowsNeeded; ++i) {
         bool spaceFree = true;
+
+        // Check the columns E and F for the required rows
         for (int j = i; j < i + rowsNeeded; ++j) {
-            if (terminalStrip[j][2] != '-' || terminalStrip[j][7] != '-') {
+            if (terminalStrip[j][4] != '-' || terminalStrip[j][5] != '-') {
                 spaceFree = false;
                 break;
             }
         }
+
+        // If space is free, store the startRow and return true
         if (spaceFree) {
             startRow = i;
             return true;
         }
     }
+
     return false;
 }
 
