@@ -1,7 +1,7 @@
 #ifndef BREADBOARD_H
 #define BREADBOARD_H
 
-#include "IC.h"
+#include "IC.hpp"
 #include <iostream>
 #include <vector>
 

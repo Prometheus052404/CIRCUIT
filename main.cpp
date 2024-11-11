@@ -1,9 +1,9 @@
-#include "breadboard.h"
-#include "NANDGateIC.h"
-#include "NORGateIC.h"
-#include "XORGateIC.h"
-#include "ANDGateIC.h"
-#include "ORGateIC.h"
-#include "NOTGateIC.h"
+#include "breadboard.hpp"
+#include "NANDGateIC.hpp"
+#include "NORGateIC.hpp"
+#include "XORGateIC.hpp"
+#include "ANDGateIC.hpp"
+#include "ORGateIC.hpp"
+#include "NOTGateIC.hpp"
 #include <iostream>
 #include <iomanip>
