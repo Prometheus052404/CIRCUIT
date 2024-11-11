@@ -12,5 +12,5 @@ void NORGateIC :: simulate() {
         pins[13 - 1] = !(pins[11 - 1] | pins[12 - 1]);  // Gate 4 (Pins 11, 12 => Output on Pin 13)
     } 
     else
-        throw runtime_error("NOR Gate IC is not powered on.");
+        throw runtime_error("NOR Gate IC is not powered on."); //handling exceptions, this will throw an error if the VCC and the Ground are not conneted to the IC
 }

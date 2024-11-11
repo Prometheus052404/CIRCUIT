@@ -14,5 +14,5 @@ void NOTGateIC :: simulate() {
         pins[11 - 1] = !pins[10 - 1]; // Gate 5 (Pin 10 and Pin 11)
         pins[13 - 1] = !pins[12 - 1]; // Gate 6 (Pin 12 and Pin 13)
     } else
-        throw runtime_error("NOTGateIC (Hex Inverter) is not powered on.");
+        throw runtime_error("NOTGateIC (Hex Inverter) is not powered on."); //handling exceptions, this will throw an error if the VCC and the Ground are not conneted to the IC
 }

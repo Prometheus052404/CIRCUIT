@@ -1,4 +1,3 @@
-#include "breadboard.hpp"
 #include "NANDGateIC.hpp"
 #include "NORGateIC.hpp"
 #include "XNORGateIC.hpp"
@@ -7,53 +6,99 @@
 #include "XORGateIC.hpp"
 #include "NOTGateIC.hpp"
 
-int main() {
-    Breadboard breadboard;
-    
+int main() 
+{
+    //implementing ICs
+    //A MORE EXTENSIVE TEST DRIVER WILL BE PROVIDED IN THE FINAL SUBMISSION
     ANDGateIC andGateIC;
+
     ORGateIC orGateIC;
-    XORGateIC xorGateIC;
+
     NOTGateIC notGateIC;
 
-    breadboard + andGateIC;
-    breadboard + orGateIC;
-    breadboard + xorGateIC;
-    breadboard + notGateIC;
+    XORGateIC xorGateIC;
 
-    breadboard.display();
-    breadboard.setPowerRail(1, true);
-    breadboard.setPowerRail(0, true);
-    breadboard.connectICPower(andGateIC);
-    breadboard.connectICPower(orGateIC);
-    breadboard.connectICPower(xorGateIC);
-    breadboard.connectICPower(notGateIC);
+    NANDGateIC nandGateIC;
+
+    NORGateIC norGateIC;
+
+    XNORGateIC xnorGateIC;
+
+    //connecting ICs
+    andGateIC += "VCC";
+    andGateIC += "GND";
+
+    orGateIC += "VCC";
+    orGateIC += "GND";
+
+    notGateIC += "VCC";
+    notGateIC += "GND";
+
+    xorGateIC += "VCC";
+    xorGateIC += "GND";
+
+    nandGateIC += "VCC";
+    nandGateIC += "GND";
+
+    norGateIC += "VCC";
+    norGateIC += "GND";
+
+    xnorGateIC += "VCC";
+    xnorGateIC += "GND";
+
+    //setting pins
 
     andGateIC[1] = 1;
     andGateIC[2] = 1;
+
+    cout << "AND Gate inputs: pin - 1: " << andGateIC[1] << " pin - 2: " << andGateIC[2] << endl;
+
     orGateIC[1] = 1;
-    orGateIC[2] = 0;
-    xorGateIC[1] = 1;
-    xorGateIC[2] = 0;
+    orGateIC[2] = 1;
+
+    cout << "Or Gate inputs: pin - 1: " << andGateIC[1] << " pin - 2: " << andGateIC[2] << endl;
+
     notGateIC[1] = 1;
+
+    cout << "NOT Gate input: pin - 1: " << notGateIC[1] << endl;
+
+    xorGateIC[1] = 1;
+    xorGateIC[2] = 1;
+
+    cout << "XOR Gate inputs: pin - 1: " << xorGateIC[1] << " pin - 2: " << xorGateIC[2] << endl;
+
+    nandGateIC[1] = 1;
+    nandGateIC[2] = 1;
+
+    cout << "NAND Gate inputs: pin - 1: " << nandGateIC[1] << " pin - 2: " << nandGateIC[2] << endl;
+
+    norGateIC[1] = 1;
+    norGateIC[2] = 1;
+
+    cout << "NOR Gate inputs: pin - 1: " << norGateIC[1] << " pin - 2: " << norGateIC[2] << endl;
+
+    xnorGateIC[1] = 1;
+    xnorGateIC[2] = 1;
+
+    cout << "XNOR Gate inputs: pin - 1: " << xnorGateIC[1] << " pin - 2: " << xnorGateIC[2] << endl;
+
+    //simulating ICs
+    andGateIC.simulate();
+    orGateIC.simulate();
+    notGateIC.simulate();
+    xorGateIC.simulate();
+    nandGateIC.simulate();
+    norGateIC.simulate();
+    xnorGateIC.simulate();
+
+    //Results
+    cout << "AND IC: pin - 3: " << andGateIC[3] << endl;
+    cout << "OR IC: pin - 3: " << orGateIC[3] << endl;
+    cout << "NOT IC: pin - 2: " << notGateIC[2] << endl;
+    cout << "XOR IC: pin - 3: " << xorGateIC[3] << endl;
+    cout << "NAND IC: pin - 3: " << nandGateIC[3] << endl;
+    cout << "NOR IC: pin - 3: " << norGateIC[3] << endl;
+    cout << "XNOR IC: pin - 3: " << xnorGateIC[3] << endl;
     
-
-    try {
-        andGateIC.simulate();
-        orGateIC.simulate();
-        xorGateIC.simulate();
-        notGateIC.simulate();
-    } catch (const runtime_error& e) {
-        cerr << e.what() << "\n";
-    }
-
-    breadboard.display();
-    breadboard.setPowerRail(1, false);
-    breadboard.setPowerRail(0, false);
-    breadboard.removeIC(andGateIC);
-    breadboard.removeIC(orGateIC);
-    breadboard.removeIC(xorGateIC);
-    breadboard.removeIC(notGateIC);
-
-    breadboard.display();
     return 0;
 }

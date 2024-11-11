@@ -13,7 +13,6 @@ https://github.com/Prometheus052404/CIRCUIT
 using namespace std;
 
 class IC {
-    friend class Breadboard;
 
     protected:
         string name;          // Name of the IC
