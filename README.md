@@ -1,6 +1,6 @@
 # Digital Circuit Simulation Project
 
-This project simulates a Digital Circuit System using classes representing different types of Integrated Circuits (ICs) like AND, OR, NOT, NOR, NAND, XOR, XNOR gates, as well as a Breadboard to connect and interact with these ICs.<br><br>The project demonstrates Object-Oriented Programming concepts in C++ (like Encapsulation, Abstraction, Operator Overloading, Inheritance, Polymorphism, Exception handling and Templates) and allows users to manipulate and simulate the behavior of various digital ICs.
+This project simulates a Digital Circuit System using classes representing different types of Integrated Circuits (ICs) like AND, OR, NOT, NOR, NAND, XOR, XNOR gates, as well as a Breadboard to connect and interact with these ICs.<br><br>The project demonstrates Object-Oriented Programming concepts in C++ (like Encapsulation, Abstraction, Operator Overloading, Inheritance, Polymorphism and Exception handling) and allows users to manipulate and simulate the behavior of various digital ICs.
 
 ## Table of Contents
 
@@ -10,6 +10,7 @@ This project simulates a Digital Circuit System using classes representing diffe
 - [Usage](#usage)
 - [Classes and Their Functions](#classes-and-their-functions)
 - [Example](#example)
+- [Future Implementation](#future-implementation)
 - [License](#license)
 
 ## Project Structure
@@ -186,7 +187,7 @@ int main()
 ```
 
 ## Future Implementation
-In future, a breadboard class is planned to be implemetated, along various features of integrating the IC and the Breadboard class.
+In future, a `Breadboard` Class is planned to be implemetated, along with various other features, like **integrating the IC and the `Breadboard` Class**.
 
 ## License
 This project, **Digital Circuit Simulator**, was created by **Harith Yerragolam** and **Parth Pandey**.
