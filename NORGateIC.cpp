@@ -1,0 +1,25 @@
+#include "NORGateIC.h"
+#include <iostream>
+#include <stdexcept>
+
+NORGateIC::NORGateIC() : IC(14, 14, 7) {
+    std::cout << "NOR Gate IC (7402) created with 14 pins, VCC on pin 14, GND on pin 7." << std::endl;
+}
+
+void NORGateIC::simulate() {
+    if (powerConnected && groundConnected) {
+        // Gate 1 (Pins 1, 2 => Output on Pin 3)
+        pins[3 - 1] = !(pins[1 - 1] | pins[2 - 1]);
+        
+        // Gate 2 (Pins 4, 5 => Output on Pin 6)
+        pins[6 - 1] = !(pins[4 - 1] | pins[5 - 1]);
+        
+        // Gate 3 (Pins 8, 9 => Output on Pin 10)
+        pins[10 - 1] = !(pins[8 - 1] | pins[9 - 1]);
+        
+        // Gate 4 (Pins 11, 12 => Output on Pin 13)
+        pins[13 - 1] = !(pins[11 - 1] | pins[12 - 1]);
+    } else {
+        throw std::runtime_error("NOR Gate IC is not powered on.");
+    }
+}
