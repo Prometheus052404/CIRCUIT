@@ -24,3 +24,7 @@ $(TARGET): $(OBJECTS)
 # Clean target to remove object files and the executable
 clean:
 	rm -f $(OBJECTS) $(TARGET)
+
+test:
+	@echo "Running tests..."
+	# Add commands to run your tests here
