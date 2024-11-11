@@ -7,7 +7,6 @@
 using namespace std;
 
 class IC {
-    friend class Breadboard;
 
     protected:
         string name;          // Name of the IC

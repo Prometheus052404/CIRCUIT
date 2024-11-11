@@ -14,5 +14,5 @@ void ANDGateIC :: simulate() {
     } 
     
     else
-        throw runtime_error("AND Gate IC is not powered on.");
+        throw runtime_error("AND Gate IC is not powered on.");// handling exceptions, this will throw an error if the VCC and the Ground are not conneted to the IC
 }

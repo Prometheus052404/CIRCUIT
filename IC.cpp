@@ -41,7 +41,7 @@ int IC :: getPin(int pin) const {
 
 int& IC :: operator[](int pinNumber) {
     if ((pinNumber >= 0) && (pinNumber < pinCount))
-        return pins[pinNumber];
+        return pins[pinNumber-1];
     else
         throw out_of_range("Invalid pin number");
 }
