@@ -1,3 +1,6 @@
+#ifndef IC_HPP  // Check if IC_HPP is not defined
+#define IC_HPP  // Define IC_HPP
+
 #include <iostream>
 #include <stdexcept>
 
@@ -32,3 +35,5 @@ class IC {
 
         virtual void simulate() = 0; // Pure virtual function for IC-specific logic
 };
+
+#endif // End of include guard for IC_HPP
