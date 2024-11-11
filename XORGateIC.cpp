@@ -1,4 +1,4 @@
-#include "XORGateIC.h"
+#include "XORGateIC.hpp"
 #include <iostream>
 #include <stdexcept>
 using namespace std;

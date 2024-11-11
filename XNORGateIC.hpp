@@ -1,4 +1,4 @@
-#include "IC.h"
+#include "IC.hpp"
 
 class XNORGateIC : public IC {
 public:

@@ -1,4 +1,4 @@
-#include "XNORGateIC.h"
+#include "XNORGateIC.hpp"
 #include <iostream>
 #include <stdexcept>
 

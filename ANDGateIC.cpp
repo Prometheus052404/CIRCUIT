@@ -1,4 +1,4 @@
-#include "ANDGateIC.h"
+#include "ANDGateIC.hpp"
 #include <iostream>
 #include <stdexcept>
 using namespace std;
