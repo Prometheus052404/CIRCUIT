@@ -1,9 +1,9 @@
 #include "IC.hpp"
 
 class XNORGateIC : public IC {
-public:
-    XNORGateIC();
-    void simulate() override;
+    public:
+        XNORGateIC();
+        void simulate() override;
 
-private:
+    private:
 };
