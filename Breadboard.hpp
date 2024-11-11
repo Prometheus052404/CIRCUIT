@@ -1,6 +1,4 @@
 #include "IC.hpp"
-#include <iostream>
-#include <vector>
 
 using namespace std;
 

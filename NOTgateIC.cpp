@@ -1,6 +1,7 @@
 #include "NOTGateIC.hpp"
 #include <iostream>
 #include <stdexcept>
+
 using namespace std;
 
 NOTGateIC::NOTGateIC() : IC(14, 14, 7) {

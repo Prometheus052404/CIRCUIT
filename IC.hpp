@@ -1,7 +1,9 @@
+#include <iostream>
 #include <stdexcept>
 
-class IC {
+using namespace std;
 
+class IC {
     friend class Breadboard;
 
 protected:

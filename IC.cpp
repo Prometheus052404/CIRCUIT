@@ -1,5 +1,4 @@
 #include "IC.hpp"
-#include <iostream>
 
 using namespace std;
 

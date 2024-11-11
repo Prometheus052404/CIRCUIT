@@ -1,6 +1,4 @@
 #include "XNORGateIC.hpp"
-#include <iostream>
-#include <stdexcept>
 
 using namespace std;
 

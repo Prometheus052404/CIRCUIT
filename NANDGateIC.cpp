@@ -1,6 +1,5 @@
 #include "NANDGateIC.hpp"
-#include <iostream>
-#include <stdexcept>
+
 using namespace std;
 
 NANDGateIC::NANDGateIC() : IC(14, 14, 7) {

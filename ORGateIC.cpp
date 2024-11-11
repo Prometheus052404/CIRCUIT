@@ -1,6 +1,5 @@
 #include "ORGateIC.hpp"
-#include <iostream>
-#include <stdexcept>
+
 using namespace std;
 
 ORGateIC::ORGateIC() : IC(14, 14, 7) {

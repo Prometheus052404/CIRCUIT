@@ -1,6 +1,4 @@
 #include "NORGateIC.hpp"
-#include <iostream>
-#include <stdexcept>
 
 NORGateIC::NORGateIC() : IC(14, 14, 7) {
     std::cout << "NOR Gate IC (7402) created with 14 pins, VCC on pin 14, GND on pin 7." << std::endl;
