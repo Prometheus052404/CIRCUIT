@@ -1,4 +1,4 @@
-#include "IC.h"
+#include "IC.hpp"
 #include <iostream>
 
 class ANDGateIC : public IC {
