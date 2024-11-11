@@ -1,7 +1,5 @@
 #include "XNORGateIC.hpp"
 
-using namespace std;
-
 XNORGateIC::XNORGateIC() : IC(14, 14, 7) {  // VCC on pin 14, GND on pin 7
     cout << "XNOR Gate IC (74266) created with 14 pins, VCC on pin 14, GND on pin 7." << endl;
 }

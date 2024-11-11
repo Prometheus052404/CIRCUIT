@@ -1,7 +1,5 @@
 #include "IC.hpp"
 
-using namespace std;
-
 class Breadboard {
 private:
     static const int ROWS = 30;       // Number of rows in the terminal strip
