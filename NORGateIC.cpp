@@ -1,4 +1,4 @@
-#include "NORGateIC.h"
+#include "NORGateIC.hpp"
 #include <iostream>
 #include <stdexcept>
 

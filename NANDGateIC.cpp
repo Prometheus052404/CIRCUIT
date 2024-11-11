@@ -1,4 +1,4 @@
-#include "NANDGateIC.h"
+#include "NANDGateIC.hpp"
 #include <iostream>
 #include <stdexcept>
 using namespace std;

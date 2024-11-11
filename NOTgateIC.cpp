@@ -1,4 +1,4 @@
-#include "NOTGateIC.h"
+#include "NOTGateIC.hpp"
 #include <iostream>
 
 using namespace std;
