@@ -17,7 +17,6 @@ This project simulates a Digital Circuit System using classes representing diffe
 The project consists of the following files:
 
 - `IC.hpp` and `IC.cpp`: Base class `IC` for all integrated circuits.
-- `Breadboard.hpp` and `Breadboard.cpp`: Class `Breadboard` to manage ICs and simulate connections.
 - `ANDGateIC.hpp` and `ANDGateIC.cpp`: Class `ANDGateIC` to simulate an AND gate IC.
 - `ORGateIC.hpp` and `ORGateIC.cpp`: Class `ORGateIC` to simulate an OR gate IC.
 - `NOTGateIC.hpp` and `NOTGateIC.cpp`: Class `NOTGateIC` to simulate a NOT gate IC.
@@ -28,7 +27,6 @@ The project consists of the following files:
 
 ## Features
 
-- **Breadboard Simulation**: Create a virtual breadboard, insert ICs, and connect power rails.
 - **IC Manipulation**: Set and retrieve pin values, connect ICs to each other, and use logic gates.
 - **Operator Overloading**: Use operators for pin manipulation, IC comparison, and power connections.
 - **Virtual Functions**: Define a `simulate()` function for IC-specific behavior and execute digital logic.
@@ -47,7 +45,7 @@ To compile and run this project, you need:
 Use the following command to compile:
 
 ```bash
-g++ -o DigitalCircuitSimulator main.cpp IC.cpp Breadboard.cpp ANDGateIC.cpp ORGateIC.cpp NOTGateIC.cpp NORGateIC.cpp NANDGateIC.cpp XORGateIC.cpp XNORGateIC.cpp
+g++ -o DigitalCircuitSimulator main.cpp IC.cpp ANDGateIC.cpp ORGateIC.cpp NOTGateIC.cpp NORGateIC.cpp NANDGateIC.cpp XORGateIC.cpp XNORGateIC.cpp
 ```
 
 ### Running the Project
@@ -60,7 +58,6 @@ Use the following command to run:
 
 ## Usage
 - **Create IC objects**: Instantiate various IC objects, e.g., `ANDGateIC`, `ORGateIC`.
-- **Insert ICs on the Breadboard**: Use the `Breadboard` class to add ICs and manage their placement.
 - **Connect Power**: Connect VCC and GND to the ICs to simulate power supply.
 - **Simulate**: Call the `simulate()` function on each IC to execute its digital logic.
 
@@ -75,12 +72,6 @@ The base class for all ICs.
 - **getPin(int pin)**: Gets a pin's value.
 - **simulate()**: Pure virtual function for IC-specific logic.
 
-### Class `Breadboard`
-Represents a breadboard for placing ICs.
-
-- **insertIC(IC& ic)**: Places an IC on the breadboard.
-- **connectICPower(IC& ic)**: Connects VCC and GND to an IC.
-- **display()**: Displays the breadboard layout.
 
 ### Logic Gate ICs <br>
 Each gate IC (`ANDGateIC`, `ORGateIC`, `NOTGateIC`, `NORGateIC`, `NANDGateIC`, `XORGateIC`, `XNNORGateIC`) inherits from `IC` and overrides the `simulate()` method to perform specific logic operations.
@@ -88,27 +79,111 @@ Each gate IC (`ANDGateIC`, `ORGateIC`, `NOTGateIC`, `NORGateIC`, `NANDGateIC`, `
 ## Example
 Below is a sample usage example:
 ```bash
-#include "Breadboard.hpp"
+#include "NANDGateIC.hpp"
+#include "NORGateIC.hpp"
+#include "XNORGateIC.hpp"
 #include "ANDGateIC.hpp"
 #include "ORGateIC.hpp"
+#include "XORGateIC.hpp"
+#include "NOTGateIC.hpp"
 
-int main() {
-    Breadboard breadboard;
-    ANDGateIC andIC;
-    ORGateIC orIC;
+int main() 
+{
+    //implementing ICs
+    //A MORE EXTENSIVE TEST DRIVER WILL BE PROVIDED IN THE FINAL SUBMISSION
+    ANDGateIC andGateIC;
 
-    breadboard.insertIC(andIC);
-    breadboard.insertIC(orIC);
-    breadboard.connectICPower(andIC);
-    breadboard.connectICPower(orIC);
+    ORGateIC orGateIC;
 
-    andIC.setPin(1, 1);
-    andIC.setPin(2, 0);
-    andIC.simulate();
-    cout << "AND Gate Output (Pin 3): " << andIC.getPin(3) << endl;
+    NOTGateIC notGateIC;
 
+    XORGateIC xorGateIC;
+
+    NANDGateIC nandGateIC;
+
+    NORGateIC norGateIC;
+
+    XNORGateIC xnorGateIC;
+
+    //connecting ICs
+    andGateIC += "VCC";
+    andGateIC += "GND";
+
+    orGateIC += "VCC";
+    orGateIC += "GND";
+
+    notGateIC += "VCC";
+    notGateIC += "GND";
+
+    xorGateIC += "VCC";
+    xorGateIC += "GND";
+
+    nandGateIC += "VCC";
+    nandGateIC += "GND";
+
+    norGateIC += "VCC";
+    norGateIC += "GND";
+
+    xnorGateIC += "VCC";
+    xnorGateIC += "GND";
+
+    //setting pins
+
+    andGateIC[1] = 1;
+    andGateIC[2] = 1;
+
+    cout << "AND Gate inputs: pin - 1: " << andGateIC[1] << " pin - 2: " << andGateIC[2] << endl;
+
+    orGateIC[1] = 1;
+    orGateIC[2] = 1;
+
+    cout << "Or Gate inputs: pin - 1: " << andGateIC[1] << " pin - 2: " << andGateIC[2] << endl;
+
+    notGateIC[1] = 1;
+
+    cout << "NOT Gate input: pin - 1: " << notGateIC[1] << endl;
+
+    xorGateIC[1] = 1;
+    xorGateIC[2] = 1;
+
+    cout << "XOR Gate inputs: pin - 1: " << xorGateIC[1] << " pin - 2: " << xorGateIC[2] << endl;
+
+    nandGateIC[1] = 1;
+    nandGateIC[2] = 1;
+
+    cout << "NAND Gate inputs: pin - 1: " << nandGateIC[1] << " pin - 2: " << nandGateIC[2] << endl;
+
+    norGateIC[1] = 1;
+    norGateIC[2] = 1;
+
+    cout << "NOR Gate inputs: pin - 1: " << norGateIC[1] << " pin - 2: " << norGateIC[2] << endl;
+
+    xnorGateIC[1] = 1;
+    xnorGateIC[2] = 1;
+
+    cout << "XNOR Gate inputs: pin - 1: " << xnorGateIC[1] << " pin - 2: " << xnorGateIC[2] << endl;
+
+    //simulating ICs
+    andGateIC.simulate();
+    orGateIC.simulate();
+    notGateIC.simulate();
+    xorGateIC.simulate();
+    nandGateIC.simulate();
+    norGateIC.simulate();
+    xnorGateIC.simulate();
+
+    //Results
+    cout << "AND IC: pin - 3: " << andGateIC[3] << endl;
+    cout << "OR IC: pin - 3: " << orGateIC[3] << endl;
+    cout << "NOT IC: pin - 2: " << notGateIC[2] << endl;
+    cout << "XOR IC: pin - 3: " << xorGateIC[3] << endl;
+    cout << "NAND IC: pin - 3: " << nandGateIC[3] << endl;
+    cout << "NOR IC: pin - 3: " << norGateIC[3] << endl;
+    cout << "XNOR IC: pin - 3: " << xnorGateIC[3] << endl;
+    
     return 0;
 }
+
 ```
 
 ## License
