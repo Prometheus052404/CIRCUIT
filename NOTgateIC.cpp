@@ -1,16 +1,7 @@
-#ifndef NOTGATEIC_HPP
-#define NOTGATEIC_HPP
-
 #include "NOTGateIC.hpp"
 #include <iostream>
 #include <stdexcept>
 using namespace std;
-
-class NOTGateIC {
-public:
-    NOTGateIC();
-    // Add other members if necessary
-};
 
 NOTGateIC::NOTGateIC() : IC(14, 14, 7) {
     cout << "NOTGateIC (Hex Inverter) created with 14 pins, VCC on pin 14, GND on pin 7." << endl;
@@ -29,5 +20,3 @@ void NOTGateIC::simulate() {
         throw runtime_error("NOTGateIC (Hex Inverter) is not powered on.");
     }
 }
-
-#endif // NOTGATEIC_HPP
