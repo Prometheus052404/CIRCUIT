@@ -1,9 +1,9 @@
 #include "IC.hpp"
 #include <iostream>
 
-class NORGateIC : public IC {
+class NOTGateIC : public IC {
 public:
-    NORGateIC();
+    NOTGateIC();
     void simulate() override;
 };
 
