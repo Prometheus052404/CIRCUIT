@@ -22,8 +22,8 @@ jobs:
       run: make test
       
     - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
+    - name: Configure CMake
+      run: cmake .
     - name: make check
       run: make check
     - name: make distcheck
