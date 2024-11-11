@@ -1,7 +1,5 @@
 #include "IC.hpp"
 
-using namespace std;
-
 IC::IC(int pinCount, int vccPin, int groundPin)
     : pinCount(pinCount), vccPin(vccPin), groundPin(groundPin), powerConnected(false), groundConnected(false) {
     pins = new int[pinCount]();

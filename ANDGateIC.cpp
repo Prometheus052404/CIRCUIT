@@ -1,5 +1,4 @@
 #include "ANDGateIC.hpp"
-using namespace std;
 
 ANDGateIC::ANDGateIC() : IC(14, 14, 7) { // VCC on pin 14, GND on pin 7
     cout << "AND Gate IC (7408) created with 14 pins, VCC on pin 14, GND on pin 7." << std::endl;
