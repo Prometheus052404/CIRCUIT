@@ -1,33 +1,30 @@
 #include "Breadboard.hpp"
 #include <iomanip>
 
-Breadboard::Breadboard() : icCount(0) {
+Breadboard :: Breadboard() : icCount(0) {
 
     // Initialize breadboard terminal strip as empty
-    for (int i = 0; i < ROWS; ++i) {
-        for (int j = 0; j < COLUMNS; ++j) {
+    for (int i = 0; i < ROWS; ++i)
+        for (int j = 0; j < COLUMNS; ++j)
             terminalStrip[i][j] = '-';
-        }
-    }
+
     // Initialize power rails as off
-    for (int i = 0; i < POWER_RAILS; ++i) {
-        for (int j = 0; j < ROWS; ++j) {
+    for (int i = 0; i < POWER_RAILS; ++i)
+        for (int j = 0; j < ROWS; ++j)
             powerRails[i][j] = false;
-        }
-    }
-    for (int i = 0; i < 10; ++i) {
+        
+    for (int i = 0; i < 10; ++i)
         ics[i] = nullptr;
-    }
 }
 
-bool Breadboard::isSpaceAvailable(int rowsNeeded, int& startRow) const {
+bool Breadboard :: isSpaceAvailable(int rowsNeeded, int& startRow) const {
     // Check space across the rows for columns E and F
     for (int i = 0; i <= ROWS - rowsNeeded; ++i) {
         bool spaceFree = true;
 
         // Check the columns E and F for the required rows
         for (int j = i; j < i + rowsNeeded; ++j) {
-            if (terminalStrip[j][4] != '-' || terminalStrip[j][5] != '-') {
+            if ((terminalStrip[j][4] != '-') || (terminalStrip[j][5] != '-')) {
                 spaceFree = false;
                 break;
             }
