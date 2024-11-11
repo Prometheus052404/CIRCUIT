@@ -13,7 +13,7 @@ Breadboard :: Breadboard() : icCount(0) {
         for (int j = 0; j < ROWS; ++j)
             powerRails[i][j] = false;
         
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 5; ++i)
         ics[i] = nullptr;
 }
 
@@ -41,7 +41,7 @@ bool Breadboard :: isSpaceAvailable(int rowsNeeded, int& startRow) const {
 }
 
 bool Breadboard::insertIC(IC& ic) {
-    if (icCount >= 10) {
+    if (icCount >= 5) {
         cerr << "Cannot place more ICs on the breadboard.\n";
         return false;
     }
@@ -59,8 +59,8 @@ bool Breadboard::insertIC(IC& ic) {
 
     // Map IC pins to terminal strip
     for (int i = 0; i < rowsNeeded; ++i) {
-        terminalStrip[startRow + i][2] = 'P';
-        terminalStrip[startRow + i][7] = 'P';
+        terminalStrip[startRow + i][4] = 'P';
+        terminalStrip[startRow + i][5] = 'P';
     }
 
     cout << "IC placed in the ditch from rows " << startRow << " to " << (startRow + rowsNeeded - 1) << ".\n";
@@ -73,8 +73,8 @@ void Breadboard::removeIC(IC& ic) {
             int startRow = ics[i]->startRow;
             int rowsNeeded = ic.pinCount / 2;
             for (int j = 0; j < rowsNeeded; ++j) {
-                terminalStrip[startRow + j][2] = '-';
-                terminalStrip[startRow + j][7] = '-';
+                terminalStrip[startRow + j][4] = '-';
+                terminalStrip[startRow + j][5] = '-';
             }
             delete ics[i];
             ics[i] = ics[--icCount];
@@ -139,5 +139,13 @@ void Breadboard::display() const {
     for (int i = 0; i < icCount; ++i) {
         cout << "IC " << i + 1 << " placed from rows " << ics[i]->startRow << " to " 
              << (ics[i]->startRow + ics[i]->ic->pinCount / 2 - 1) << ".\n";
+    }
+}
+
+Breadboard& Breadboard::operator+(IC& ic) {
+    if (insertIC(ic)) {
+        return *this;
+    } else {
+        throw runtime_error("Cannot insert IC on the breadboard.");
     }
 }

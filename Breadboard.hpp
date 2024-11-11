@@ -13,7 +13,7 @@ class Breadboard {
             int startRow;
         };
 
-        ICPlacement* ics[10];  // Assume a maximum of 10 ICs can be placed
+        ICPlacement* ics[5];  // Assume a maximum of 5 ICs can be placed
         int icCount;
 
         bool isSpaceAvailable(int rowsNeeded, int& startRow) const; // Helper to find space
@@ -25,4 +25,6 @@ class Breadboard {
         void connectICPower(IC& ic); // Connect VCC and GND to a specific IC
         void setPowerRail(int rail, bool state); // Turn power rails ON or OFF
         void display() const;        // Display breadboard layout
+        // Overload + operator to insert an IC
+        Breadboard& operator+(IC&); //overload + operator to insert an IC
 };
