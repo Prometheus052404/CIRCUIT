@@ -1,5 +1,4 @@
 #include "IC.hpp"
-#include <iostream>
 
 class ANDGateIC : public IC {
 public:

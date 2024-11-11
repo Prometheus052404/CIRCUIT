@@ -5,5 +5,4 @@
 #include "ANDGateIC.hpp"
 #include "ORGateIC.hpp"
 #include "NOTGateIC.hpp"
-#include <iostream>
 #include <iomanip>

@@ -1,6 +1,4 @@
 #include "ANDGateIC.hpp"
-#include <iostream>
-#include <stdexcept>
 using namespace std;
 
 ANDGateIC::ANDGateIC() : IC(14, 14, 7) { // VCC on pin 14, GND on pin 7

@@ -1,6 +1,5 @@
 #include "XORGateIC.hpp"
-#include <iostream>
-#include <stdexcept>
+
 using namespace std;
 
 XORGateIC::XORGateIC() : IC(14, 14, 7) {

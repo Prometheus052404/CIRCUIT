@@ -1,9 +1,4 @@
-#ifndef BREADBOARD_H
-#define BREADBOARD_H
-
 #include "IC.hpp"
-#include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -31,5 +26,3 @@ public:
     void setPowerRail(int rail, bool state); // Turn power rails ON or OFF
     void display() const;        // Display breadboard layout
 };
-
-#endif

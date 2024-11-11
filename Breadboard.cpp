@@ -1,5 +1,4 @@
 #include "Breadboard.hpp"
-#include <iostream>
 #include <iomanip>
 
 Breadboard::Breadboard() : icCount(0) {
