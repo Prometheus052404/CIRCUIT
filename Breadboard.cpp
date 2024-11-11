@@ -63,7 +63,7 @@ bool Breadboard::insertIC(IC& ic) {
         terminalStrip[startRow + i][5] = 'P';
     }
 
-    cout << "IC placed in the ditch from rows " << startRow << " to " << (startRow + rowsNeeded - 1) << ".\n";
+    cout << ic.name <<" IC placed in the ditch from rows " << startRow + 1<< " to " << (startRow + rowsNeeded) << ".\n";
     return true;
 }
 
@@ -76,10 +76,10 @@ void Breadboard::removeIC(IC& ic) {
                 terminalStrip[startRow + j][4] = '-';
                 terminalStrip[startRow + j][5] = '-';
             }
+            cout<< ic.name << " IC removed from the ditch.\n";
             delete ics[i];
             ics[i] = ics[--icCount];
             ics[icCount] = nullptr;
-            cout << "IC removed from the ditch.\n";
             return;
         }
     }
@@ -102,7 +102,7 @@ void Breadboard::connectICPower(IC& ic) {
     try {
         ic += "VCC";
         ic += "GND";
-        cout << "IC connected to VCC and GND.\n";
+        cout << ic.name << " IC connected to VCC and GND.\n";
     } catch (const runtime_error& e) {
         cerr << e.what() << "\n";
     }
@@ -137,8 +137,8 @@ void Breadboard::display() const {
 
     cout << "\nICs on the breadboard:\n";
     for (int i = 0; i < icCount; ++i) {
-        cout << "IC " << i + 1 << " placed from rows " << ics[i]->startRow << " to " 
-             << (ics[i]->startRow + ics[i]->ic->pinCount / 2 - 1) << ".\n";
+        cout << ics[i]->ic->name << " IC placed from rows " << ics[i]->startRow + 1 << " to " 
+             << (ics[i]->startRow + ics[i]->ic->pinCount / 2) << ".\n";
     }
 }
 

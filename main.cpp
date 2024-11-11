@@ -28,6 +28,15 @@ int main() {
     breadboard.connectICPower(xorGateIC);
     breadboard.connectICPower(notGateIC);
 
+    andGateIC[1] = 1;
+    andGateIC[2] = 1;
+    orGateIC[1] = 1;
+    orGateIC[2] = 0;
+    xorGateIC[1] = 1;
+    xorGateIC[2] = 0;
+    notGateIC[1] = 1;
+    
+
     try {
         andGateIC.simulate();
         orGateIC.simulate();
