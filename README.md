@@ -190,7 +190,7 @@ int main()
 In future, a `Breadboard` Class is planned to be implemetated, along with various other features, like **integrating the IC and the `Breadboard` Class**.
 
 ## License
-This project, **Digital Circuit Simulator**, was created by **Harith Yerragolam** and **Parth Pandey**.
+This project, **Digital Circuit Simulator**, was created by OOPS Team - 64, **Harith Yerragolam** and **Parth Pandey**.
 <br><br>
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

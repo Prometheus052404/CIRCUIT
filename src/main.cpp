@@ -1,3 +1,8 @@
+/* 
+Project done by Team-64 (CS23I1027 - Harith Yerragolam and CS23I1064 - Parth Pandey)
+https://github.com/Prometheus052404/CIRCUIT
+*/
+
 #include "NANDGateIC.hpp"
 #include "NORGateIC.hpp"
 #include "XNORGateIC.hpp"
