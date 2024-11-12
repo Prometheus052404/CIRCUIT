@@ -1,7 +1,7 @@
-#include "IC.hpp"
+#include "../include/IC.hpp"
 
 IC :: IC(int pinCount, int vccPin, int groundPin, const string& name)
-    : pinCount(pinCount), vccPin(vccPin), groundPin(groundPin), powerConnected(false), groundConnected(false), name(name) {
+    : name(name), pinCount(pinCount), vccPin(vccPin), groundPin(groundPin), powerConnected(false), groundConnected(false) {
     pins = new int[pinCount]();
 }
 

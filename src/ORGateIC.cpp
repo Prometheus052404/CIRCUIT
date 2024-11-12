@@ -1,4 +1,4 @@
-#include "ORGateIC.hpp"
+#include "../include/ORGateIC.hpp"
 
 ORGateIC :: ORGateIC() : IC(14, 14, 7, "OR") {
     cout << "OR Gate IC (7432) created with 14 pins, VCC on pin 14, GND on pin 7." << endl;

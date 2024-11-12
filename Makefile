@@ -1,30 +1,44 @@
-# Compiler
+# Compiler and flags
 CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Iinclude
 
-# Compiler flags
-CXXFLAGS = -Wall -std=c++11
-
-# Project name and target
+# Project name
 TARGET = DigitalCircuitSimulator
 
-# List of all .cpp files in the directory (assumes .cpp files are in the root directory)
-SOURCES = $(wildcard *.cpp)
+# Directories
+SRCDIR = src
+OBJDIR = obj
 
-# Automatically generated list of .o files based on .cpp file names
-OBJECTS = $(SOURCES:.cpp=.o)
+# Source files and object files
+SOURCES = $(wildcard $(SRCDIR)/*.cpp)
+OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
-# Default target to build the executable
+# Default target
+all: $(TARGET)
+
+# Link the executable
 $(TARGET): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
+	$(CXX) $(OBJECTS) -o $(TARGET)
+
+# Compile each .cpp file into .o file
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Create obj directory if it doesn't exist
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
 
 # Rule for creating .o files from .cpp files
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean target to remove object files and the executable
+# Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	rm -rf $(OBJDIR) $(TARGET)
 
 test:
 	@echo "Running tests..."
-	# Add commands to run your tests here
+
+# Phony targets
+.PHONY: all clean
+

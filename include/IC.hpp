@@ -1,6 +1,7 @@
 /* 
 Project done by Team-64 (CS23I1027 - Harith Yerragolam and CS23I1064 - Parth Pandey)
-This code is available on GItHub. Please visit the below link for the history, progress of the code and for the finished source code of the project.
+This code is available on GItHub. 
+Please visit the below link for the history, progress of the code and for the finished source code (in the future) of the project.
 https://github.com/Prometheus052404/CIRCUIT
 */
     
