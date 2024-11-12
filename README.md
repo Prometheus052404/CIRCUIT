@@ -57,6 +57,11 @@ Use the following command to run:
 ./DigitalCircuitSimulator
 ```
 
+### Using Makefile to compile and run the Project
+
+Refer the below comment: <br>
+https://github.com/Prometheus052404/CIRCUIT/pull/17#issue-2653223250
+
 ## Usage
 - **Create IC objects**: Instantiate various IC objects, e.g., `ANDGateIC`, `ORGateIC`.
 - **Connect Power**: Connect VCC and GND to the ICs to simulate power supply.
