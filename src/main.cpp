@@ -3,13 +3,13 @@ Project done by Team-64 (CS23I1027 - Harith Yerragolam and CS23I1064 - Parth Pan
 https://github.com/Prometheus052404/CIRCUIT
 */
 
-#include "NANDGateIC.hpp"
-#include "NORGateIC.hpp"
-#include "XNORGateIC.hpp"
-#include "ANDGateIC.hpp"
-#include "ORGateIC.hpp"
-#include "XORGateIC.hpp"
-#include "NOTGateIC.hpp"
+#include "../include/NANDGateIC.hpp"
+#include "../include/NORGateIC.hpp"
+#include "../include/XNORGateIC.hpp"
+#include "../include/ANDGateIC.hpp"
+#include "../include/ORGateIC.hpp"
+#include "../include/XORGateIC.hpp"
+#include "../include/NOTGateIC.hpp"
 
 int main() 
 {
