@@ -41,21 +41,85 @@ To compile and run this project, you need:
 - C++ compiler supporting C++11 or later (e.g., g++)
 - Basic understanding of Digital Circuits
 
-### Compiling the Project
-
-Use the following command to compile:
-
-```bash
-g++ -o DigitalCircuitSimulator main.cpp IC.cpp ANDGateIC.cpp ORGateIC.cpp NOTGateIC.cpp NORGateIC.cpp NANDGateIC.cpp XORGateIC.cpp XNORGateIC.cpp
-```
+**Note:** Now the Project can be compiled and run using just 2 commands and clear all the cache files in 1 command using MakeFile concept. <br><br>Tests will be implemented soon.
 
 ### Running the Project
 
-Use the following command to run:
+Make sure you have cloned the GitHub repo into your local system if you have not already: 
+```bash
+git clone https://github.com/Prometheus052404/CIRCUIT.git
+```
+
+Use the below commands in `Git Bash` at your Project's Root Directory:
+```bash
+git fetch
+git pull
+```
+
+As you have made sure that you're up-to-date, you are now ready to continue ahead!
+
+### Make installation
+
+**Note:** Skip this section if `make --version` gives desired output in your git bash
+
+
+**If you are using Windows and have wsl installed, but not make, then follow the below steps:**
+- Go to ezwinports, i.e. https://sourceforge.net/projects/ezwinports/files/
+- Download `make-4.1-2-without-guile-w32-bin.zip` (get the version without guile)
+- Extract zip
+- Copy the contents to `C:\Program Files\Git\mingw64\` merging the folders, but do NOT overwrite/replace any exisiting files.
+
+**If you are using Ubuntu/Debian,**
+- Open WSL and update the package list:
+```bash
+sudo apt update
+```
+
+- Install make:
+```bash
+sudo apt install make
+```
+Navigate to your project directory within WSL and run `make`. OR
+```bash
+sudo apt install build-essential
+```
+`build-essential` includes `make` and other essential development tools like `gcc` and `g++`.
+
+**For MacOS,** <br>
+- If you have Homebrew installed, you can install `make` with:
+```bash
+brew install make
+```
+
+### Verify Installation
+ - Open a new Git Bash window to refresh your PATH.
+- Run:
+
+```bash
+make --version
+```
+This should display the version of `make` if it’s installed correctly.
+
+### Implementation 
+**Create the Project using Makefile:**
+```bash
+make
+```
+
+**Execute the code:**
 
 ```bash
 ./DigitalCircuitSimulator
 ```
+
+**Remove all the build / cache files:**
+
+```bash
+make clean
+````
+
+**Note:** Run the above commands in git bash, at the project's root directory.
+
 
 ## Usage
 - **Create IC objects**: Instantiate various IC objects, e.g., `ANDGateIC`, `ORGateIC`.
