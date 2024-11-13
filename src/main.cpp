@@ -11,8 +11,7 @@ https://github.com/Prometheus052404/CIRCUIT
 #include "../include/XORGateIC.hpp"
 #include "../include/NOTGateIC.hpp"
 
-int main() 
-{
+int main() {
     //implementing ICs
     //A MORE EXTENSIVE TEST DRIVER WILL BE PROVIDED IN THE FINAL SUBMISSION
     ANDGateIC andGateIC;
@@ -51,7 +50,8 @@ int main()
     xnorGateIC += "VCC";
     xnorGateIC += "GND";
 
-    //setting pins
+
+    //Setting pins
 
     andGateIC[1] = 1;
     andGateIC[2] = 1;
@@ -87,7 +87,7 @@ int main()
 
     cout << "XNOR Gate inputs: pin - 1: " << xnorGateIC[1] << " pin - 2: " << xnorGateIC[2] << endl;
 
-    //simulating ICs
+    //Simulating ICs
     andGateIC.simulate();
     orGateIC.simulate();
     notGateIC.simulate();
