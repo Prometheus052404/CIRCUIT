@@ -251,7 +251,8 @@ int main()
 ```
 
 ## Future Implementation
-- In future, a `Breadboard` Class is planned to be implemetated, along with various other features, like **integrating the IC and the `Breadboard` Class**.
+- A `Breadboard` Class is planned to be implemetated, along with various other features, like **integrating the IC and the `Breadboard` Class**.
+- More ICs to be implemented (Adders, Subtractors, Comparators, Encoders, Decoders, Multiplexers, Demultiplexers, Flip Flops, Counters, Shift Registers
 - Inputs shall be user given entirely.
 
 ## License
