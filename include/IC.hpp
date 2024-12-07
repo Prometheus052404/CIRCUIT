@@ -19,12 +19,13 @@ class IC {
         string name;          // Name of the IC
         int* pins;            // Dynamic array to hold pin values
         int pinCount;         // Number of pins
-        int vccPin;           // VCC pin number
-        int groundPin;        // GND pin number
+        
         bool powerConnected;
         bool groundConnected;
 
     public:
+        int vccPin;           // VCC pin number
+        int groundPin;        // GND pin number
         IC(int pinCount, int vccPin, int groundPin, const string& name = "Generic IC");
         IC(int pinCount) : pinCount(pinCount) {}
         virtual ~IC() = default;

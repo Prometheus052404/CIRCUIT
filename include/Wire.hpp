@@ -15,6 +15,11 @@ private:
     int destinationPin;
 
 public:
+    //get function
+    IC* getSourceIC() const { return sourceIC; }
+    int getSourcePin() const { return sourcePin; }
+    IC* getDestinationIC() const { return destinationIC; }
+    int getDestinationPin() const { return destinationPin; }
     Wire(IC* srcIC, int srcPin, IC* destIC, int destPin);
     ~Wire();
 
