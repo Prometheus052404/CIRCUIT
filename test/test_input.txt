@@ -1,0 +1,11 @@
+5        # Select IC index (assumed to be within the range of available ICs)
+1        # Select pin number to set (e.g., setting pin 1)
+0        # Set pin to 0 (or logic low)
+3        # Select IC index again (assumed to be within the range of available ICs)
+4        # Select pin number to set (e.g., setting pin 4)
+1        # Set pin to 1 (or logic high)
+2        # Select source IC for connection
+3        # Select destination IC for connection
+1        # Select source pin for connection
+5        # Select destination pin for connection
+exit     # Exit the program
