@@ -1,109 +1,177 @@
-/* 
-Project done by Team-64 (CS23I1027 - Harith Yerragolam and CS23I1064 - Parth Pandey)
-https://github.com/Prometheus052404/CIRCUIT
-*/
-
+#include "../include/ANDGateIC.hpp"
+#include "../include/ORGateIC.hpp"
+#include "../include/NOTGateIC.hpp"
+#include "../include/XORGateIC.hpp"
 #include "../include/NANDGateIC.hpp"
 #include "../include/NORGateIC.hpp"
 #include "../include/XNORGateIC.hpp"
-#include "../include/ANDGateIC.hpp"
-#include "../include/ORGateIC.hpp"
-#include "../include/XORGateIC.hpp"
-#include "../include/NOTGateIC.hpp"
+#include "../include/Wire.hpp"
+#include <string>
+#include <vector>
 
 int main() {
-    //implementing ICs
-    //A MORE EXTENSIVE TEST DRIVER WILL BE PROVIDED IN THE FINAL SUBMISSION
-    ANDGateIC andGateIC;
+    vector<IC*> icList;
+    vector<Wire*> wireList;
 
-    ORGateIC orGateIC;
+    while (true) {
+        cout << "\n--- Circuit Simulator Menu ---\n";
+        cout << "1. Create a new IC\n";
+        cout << "2. Set pin values\n";
+        cout << "3. Connect ICs with a wire\n";
+        cout << "4. Simulate IC\n";
+        cout << "5. View IC pin states\n";
+        cout << "6. Exit\n";
+        cout << "Enter your choice: ";
+        int choice;
+        cin >> choice;
 
-    NOTGateIC notGateIC;
+        if (choice == 1) {
+            cout << "Select IC type:\n";
+            cout << "1. AND Gate\n2. OR Gate\n3. NOT Gate\n4. XOR Gate\n5. NAND Gate\n6. NOR Gate\n7. XNOR Gate\n";
+            int icType;
+            cin >> icType;
 
-    XORGateIC xorGateIC;
+            IC* newIC = nullptr;
+            switch (icType) {
+                case 1: newIC = new ANDGateIC(); break;
+                case 2: newIC = new ORGateIC(); break;
+                case 3: newIC = new NOTGateIC(); break;
+                case 4: newIC = new XORGateIC(); break;
+                case 5: newIC = new NANDGateIC(); break;
+                case 6: newIC = new NORGateIC(); break;
+                case 7: newIC = new XNORGateIC(); break;
+                default: cout << "Invalid choice.\n"; continue;
+            }
 
-    NANDGateIC nandGateIC;
+            string powerChoice;
+            cout << "Connect power to this IC? (y/n): ";
+            cin >> powerChoice;
 
-    NORGateIC norGateIC;
+            if (powerChoice == "y") {
+                newIC->connectVCC();
+                newIC->connectGround();
+                cout << "Power connected to IC.\n";
+            }
 
-    XNORGateIC xnorGateIC;
+            icList.push_back(newIC);
+            cout << "IC created and added to the circuit.\n";
+        }
 
-    //connecting ICs
-    andGateIC += "VCC";
-    andGateIC += "GND";
+        else if (choice == 2) {
+            if (icList.empty()) {
+                cout << "No ICs available. Create an IC first.\n";
+                continue;
+            }
 
-    orGateIC += "VCC";
-    orGateIC += "GND";
+            size_t icIndex;
+            int pin, value;
+            cout << "Select IC index (1-" << icList.size() << "): ";
+            cin >> icIndex;
+            if (icIndex < 1 || icIndex > icList.size()) {
+                cout << "Invalid IC index.\n";
+                continue;
+            }
 
-    notGateIC += "VCC";
-    notGateIC += "GND";
+            IC* selectedIC = icList[icIndex - 1];
+            cout << "Enter pin number to set (1-" << selectedIC->getTotalPins() << "): ";
+            cin >> pin;
+            cout << "Enter value for pin " << pin << " (0/1): ";
+            cin >> value;
 
-    xorGateIC += "VCC";
-    xorGateIC += "GND";
+            try {
+                selectedIC->setPin(pin, value);
+                cout << "Pin value set successfully.\n";
+            } catch (const exception& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
 
-    nandGateIC += "VCC";
-    nandGateIC += "GND";
+        else if (choice == 3) {
+            if (icList.size() < 2) {
+                cout << "At least two ICs are required for connection.\n";
+                continue;
+            }
 
-    norGateIC += "VCC";
-    norGateIC += "GND";
+            size_t srcIC, destIC;
+            int srcPin, destPin;
+            cout << "Select source IC index (1-" << icList.size() << "): ";
+            cin >> srcIC;
+            cout << "Enter source pin: ";
+            cin >> srcPin;
+            cout << "Select destination IC index (1-" << icList.size() << "): ";
+            cin >> destIC;
+            cout << "Enter destination pin: ";
+            cin >> destPin;
 
-    xnorGateIC += "VCC";
-    xnorGateIC += "GND";
+            if (srcIC < 1 || srcIC > icList.size() || destIC < 1 || destIC > icList.size()) {
+                cout << "Invalid IC index.\n";
+                continue;
+            }
 
+            try {
+                Wire* newWire = new Wire(icList[srcIC - 1], srcPin, icList[destIC - 1], destPin);
+                newWire->connect();
+                wireList.push_back(newWire);
+                cout << "Wire connected successfully.\n";
+            } catch (const exception& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
 
-    //Setting pins
+        else if (choice == 4) {
+            if (icList.empty()) {
+                cout << "No ICs available to simulate.\n";
+                continue;
+            }
 
-    andGateIC[1] = 1;
-    andGateIC[2] = 1;
+            size_t icIndex;
+            cout << "Select IC index to simulate (1-" << icList.size() << "): ";
+            cin >> icIndex;
+            if (icIndex < 1 || icIndex > icList.size()) {
+                cout << "Invalid IC index.\n";
+                continue;
+            }
 
-    cout << "AND Gate inputs: pin - 1: " << andGateIC[1] << " pin - 2: " << andGateIC[2] << endl;
+            try {
+                icList[icIndex - 1]->simulate();
+                cout << "IC simulation completed successfully.\n";
+            } catch (const exception& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
 
-    orGateIC[1] = 1;
-    orGateIC[2] = 1;
+        else if (choice == 5) {
+            if (icList.empty()) {
+                cout << "No ICs available to view.\n";
+                continue;
+            }
 
-    cout << "Or Gate inputs: pin - 1: " << andGateIC[1] << " pin - 2: " << andGateIC[2] << endl;
+            for (size_t i = 0; i < icList.size(); ++i) {
+                cout << "IC " << i + 1 << " (" << icList[i]->getName() << "): ";
+                for (int pin = 1; pin <= icList[i]->getTotalPins(); ++pin) {
+                    try {
+                        cout << "Pin " << pin << ": " << icList[i]->getPin(pin) << " ";
+                    } catch (const exception&) {
+                        cout << "N/A ";
+                    }
+                }
+                cout << endl;
+            }
+        }
 
-    notGateIC[1] = 1;
+        else if (choice == 6) {
+            cout << "Exiting program...\n";
+            break;
+        }
 
-    cout << "NOT Gate input: pin - 1: " << notGateIC[1] << endl;
+        else {
+            cout << "Invalid choice. Try again.\n";
+        }
+    }
 
-    xorGateIC[1] = 1;
-    xorGateIC[2] = 1;
+    // Clean up dynamically allocated memory
+    for (IC* ic : icList) delete ic;
+    for (Wire* wire : wireList) delete wire;
 
-    cout << "XOR Gate inputs: pin - 1: " << xorGateIC[1] << " pin - 2: " << xorGateIC[2] << endl;
-
-    nandGateIC[1] = 1;
-    nandGateIC[2] = 1;
-
-    cout << "NAND Gate inputs: pin - 1: " << nandGateIC[1] << " pin - 2: " << nandGateIC[2] << endl;
-
-    norGateIC[1] = 1;
-    norGateIC[2] = 1;
-
-    cout << "NOR Gate inputs: pin - 1: " << norGateIC[1] << " pin - 2: " << norGateIC[2] << endl;
-
-    xnorGateIC[1] = 1;
-    xnorGateIC[2] = 1;
-
-    cout << "XNOR Gate inputs: pin - 1: " << xnorGateIC[1] << " pin - 2: " << xnorGateIC[2] << endl;
-
-    //Simulating ICs
-    andGateIC.simulate();
-    orGateIC.simulate();
-    notGateIC.simulate();
-    xorGateIC.simulate();
-    nandGateIC.simulate();
-    norGateIC.simulate();
-    xnorGateIC.simulate();
-
-    //Results
-    cout << "AND IC: pin - 3: " << andGateIC[3] << endl;
-    cout << "OR IC: pin - 3: " << orGateIC[3] << endl;
-    cout << "NOT IC: pin - 2: " << notGateIC[2] << endl;
-    cout << "XOR IC: pin - 3: " << xorGateIC[3] << endl;
-    cout << "NAND IC: pin - 3: " << nandGateIC[3] << endl;
-    cout << "NOR IC: pin - 3: " << norGateIC[3] << endl;
-    cout << "XNOR IC: pin - 3: " << xnorGateIC[3] << endl;
-    
     return 0;
 }

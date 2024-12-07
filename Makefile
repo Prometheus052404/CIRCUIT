@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Iinclude
 
 # Project name
-TARGET = DigitalCircuitSimulator
+TARGET = DCSimulator
 
 # Directories
 SRCDIR = src
