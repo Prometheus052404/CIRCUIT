@@ -1,7 +1,6 @@
 # **Digital Circuit Simulation Project**
 
 This project simulates a Digital Circuit System that allows users to create, simulate, and analyze the behavior of basic combinational logic ICs using classes representing different types of Integrated Circuits (ICs) like AND, OR, NOT, NOR, NAND, XOR, XNOR gates, and a system to connect and interact with these ICs.<br><br>The project demonstrates Object-Oriented Programming concepts in C++ (like Encapsulation, Abstraction, Operator Overloading, Inheritance, Polymorphism and Exception handling) and provides an interactive menu-driven interface for designing circuits dynamically by connecting ICs and wires, setting pin values, and observing results.
-
 <br>
 
 ## Table of Contents
@@ -29,7 +28,6 @@ The project consists of the following files:
 - `NANDGateIC.hpp` and `NANDGateIC.cpp`: Class `NANDGateIC` to simulate a NAND gate IC.
 - `XORateIC.hpp` and `XORGateIC.cpp`: Class `XORGateIC` to simulate a XOR gate IC.
 - `NORGateIC.hpp` and `XNORGateIC.cpp`: Class `XNORGateIC` to simulate a XNOR gate IC.
-
 <br>
 
 ## **Features**
@@ -59,7 +57,6 @@ The project consists of the following files:
 - **Error Handling**: The program handles invalid inputs and operations gracefully.
 
 - **Virtual Functions**: Define a `simulate()` function for IC-specific behavior and execute digital logic. Simulate INDIVIDUAL ICs and view pin states after simulation.
-
 <br>
 
 ## Getting Started
@@ -165,7 +162,6 @@ make clean
 ````
 
 **Note:** Run the above commands in git bash, at the project's root directory.
-
 <br>
 
 ## Usage
@@ -206,7 +202,6 @@ Each gate IC (`ANDGateIC`, `ORGateIC`, `NOTGateIC`, `NORGateIC`, `NANDGateIC`, `
 
 ### **Exit the Program**
 To exit the simulator, choose the `Exit` option from the menu.
-
 <br>
 
 ## **Code Structure**
@@ -236,7 +231,6 @@ DigitalLogicSimulator/
 ├── Makefile
 └── README.md
 ```
-
 <br>
 
 ## Example
@@ -514,7 +508,6 @@ int main() {
 
 
 ```
-
 <br>
 
 ## Future Implementation
@@ -541,7 +534,6 @@ int main() {
 - Add additional ICs like multiplexers, demultiplexers, flip-flops, etc.
 - Support for larger IC pin configurations (e.g., 16-pin, 20-pin ICs).
 - Add support for sequential logic circuits (e.g., Flip-Flops, Counters).
-
 <br>
 
 ## License
