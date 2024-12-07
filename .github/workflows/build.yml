@@ -12,19 +12,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+   # Step 1: Checkout the code
     - name: Checkout code
       uses: actions/checkout@v2
+
+    # Step 2: Install dependencies
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y make g++
+      run: sudo apt-get update && sudo apt-get install -y cmake make g++
+
+      # Step 3: Configure the project with CMake
+    - name: Configure project
+      run: cmake -S . -B build
+
+    # Step 4: Build the project
     - name: Build project
-      run: make
+      run: cmake --build build
+      # run: make
+  
+    # Step 5: Run tests
     - name: Run tests
-      run: make test
-      
-    - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make check
+      run: ctest --test-dir build
+      # run: make test
+
+    - name: Check
       run: make check
-    - name: make distcheck
+    - name: Distcheck
       run: make distcheck
