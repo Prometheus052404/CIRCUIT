@@ -44,8 +44,8 @@ clean:
 # Test step
 test:
 	@echo "Running tests..."
-    ./$(TARGET) < tests/test_input.txt > tests/test_output.txt
-    diff -q tests/test_output.txt tests/expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
+	./$(TARGET) < tests/test_input.txt > tests/test_output.txt
+	diff -q tests/test_output.txt tests/expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
 
 # Phony targets
 .PHONY: all clean
