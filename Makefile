@@ -1,6 +1,7 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Iinclude
+CXXFLAGS = -std=c++17 -Wall -Iinclude -Wall -Wextra -pedantic
+LDFLAGS = -static -mconsole
 
 # Project name
 TARGET = DCSimulator
@@ -18,7 +19,7 @@ all: $(TARGET)
 
 # Link the executable
 $(TARGET): $(OBJECTS)
-	$(CXX) $(OBJECTS) -o $(TARGET)
+	$(CXX) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
 
 # Compile each .cpp file into .o file
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
