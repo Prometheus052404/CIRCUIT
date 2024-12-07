@@ -5,9 +5,9 @@ IC :: IC(int pinCount, int vccPin, int groundPin, const string& name)
     pins = new int[pinCount]();
 }
 
-IC :: ~IC() {
-    delete[] pins;
-}
+int IC :: getTotalPins() const {
+        return pinCount;
+    }
 
 void IC :: connectVCC() {
     if (powerConnected)

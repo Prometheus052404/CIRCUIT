@@ -26,8 +26,11 @@ class IC {
 
     public:
         IC(int pinCount, int vccPin, int groundPin, const string& name = "Generic IC");
-        virtual ~IC();
+        IC(int pinCount) : pinCount(pinCount) {}
+        virtual ~IC() = default;
 
+        
+        int getTotalPins() const;
         void connectVCC();
         void connectGround();
         void setPin(int pin, int value);
@@ -39,6 +42,7 @@ class IC {
         bool operator==(const IC& other) const;
         IC& operator!();
 
+        const string& getName() const { return name; } // Getter for IC name
 
         virtual void simulate() = 0; // Pure virtual function for IC-specific logic
 };
