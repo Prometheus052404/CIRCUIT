@@ -50,13 +50,17 @@ The project consists of the following files:
   - Connect ICs with wires.
   - Simulate the circuit and observe the output.
 
-- **IC Manipulation**: Set and retrieve pin values, connect ICs to each other, and use logic gates.
+- **IC Manipulation**: <br>
+  Set and retrieve pin values, connect ICs to each other, and use logic gates.
 
-- **Operator Overloading**: Use operators for pin manipulation, IC comparison, and power connections.
+- **Operator Overloading**: <br>
+  Use operators for pin manipulation, IC comparison, and power connections.
 
-- **Error Handling**: The program handles invalid inputs and operations gracefully.
+- **Error Handling**: <br>
+  The program handles invalid inputs and operations gracefully.
 
-- **Virtual Functions**: Define a `simulate()` function for IC-specific behavior and execute digital logic. Simulate INDIVIDUAL ICs and view pin states after simulation.
+- **Virtual Functions**: <br>
+  Define a `simulate()` function for IC-specific behavior and execute digital logic. Simulate INDIVIDUAL ICs and view pin states after simulation.
 <br>
 
 ## Getting Started
@@ -185,7 +189,7 @@ The base class for all ICs.
 ### Logic Gate ICs <br>
 Each gate IC (`ANDGateIC`, `ORGateIC`, `NOTGateIC`, `NORGateIC`, `NANDGateIC`, `XORGateIC`, `XNNORGateIC`) inherits from `IC` and overrides the `simulate()` method to perform specific logic operations.
 
-### Follow the on-screen menu to:
+### **Follow the on-screen menu to:**
    - View ICs.
    - Create ICs.
    - Set pin values.
