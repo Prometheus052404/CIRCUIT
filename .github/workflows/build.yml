@@ -18,23 +18,22 @@ jobs:
 
     # Step 2: Install dependencies
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y cmake make g++
+      run: sudo apt-get update && sudo apt-get install -y make g++
 
-      # Step 3: Configure the project with CMake
-    - name: Configure project
-      run: cmake -S . -B build
-
-    # Step 4: Build the project
+    # Step 3: Build the project using Makefile
     - name: Build project
-      run: cmake --build build
-      # run: make
-  
-    # Step 5: Run tests
+      run: make
+
+    # Step 4: Run tests
     - name: Run tests
-      run: ctest --test-dir build
-      # run: make test
+      run: make test
+
+    # Step 5: Clean up build files
+    - name: Clean project
+      run: make clean
 
     - name: Check
       run: make check
+      
     - name: Distcheck
       run: make distcheck
