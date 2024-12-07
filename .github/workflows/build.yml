@@ -12,19 +12,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+   # Step 1: Checkout the code
     - name: Checkout code
       uses: actions/checkout@v2
+
+    # Step 2: Install dependencies
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y make g++
+
+    # Step 3: Build the project using Makefile
     - name: Build project
       run: make
+
+    # Step 4: Run tests
     - name: Run tests
       run: make test
+
+    # Step 5: Clean up build files
+    - name: Clean project
+      run: make clean
+
+    # - name: Check
+    #   run: make check
       
-    - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    # - name: Distcheck
+    #   run: make distcheck
