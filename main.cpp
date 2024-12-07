@@ -41,7 +41,7 @@ int main() {
 
             cout << "ICs available: \n";
             for (size_t i = 0; i < icList.size(); ++i) {
-                cout << i + 1 << ". " << icList[i]->getName() << endl;
+                cout << i + 1 << ". " << icList[i]  ->  getName() << endl;
             }
         }
         else if (choice == 2) {
@@ -67,8 +67,8 @@ int main() {
             cin >> powerChoice;
 
             if (powerChoice == "y" || powerChoice == "Y") {
-                newIC->connectVCC();
-                newIC->connectGround();
+                newIC -> connectVCC();
+                newIC -> connectGround();
                 cout << "Power connected to IC.\n";
             }
 
@@ -84,31 +84,31 @@ int main() {
 
             size_t icIndex;
             int pin, value;
-            cout<< "ICs available: \n";
-            for (size_t i = 0; i < icList.size(); ++i) {
-                cout << i + 1 << ". " << icList[i]->getName() << endl;
-            }
+            cout << "ICs available: \n";
+            for (size_t i = 0; i < icList.size(); ++i)
+                cout << i + 1 << ". " << icList[i] -> getName() << endl;
+
             cout<< "-----------------------------------\n";
             cout << "Select IC index (1-" << icList.size() << "): ";
             cin >> icIndex;
-            if (icIndex < 1 || icIndex > icList.size()) {
+            if ((icIndex < 1) || (icIndex > icList.size())) {
                 cout << "Invalid IC index.\n";
                 continue;
             }
 
             IC* selectedIC = icList[icIndex - 1];
             cout << "Pin values of IC " << icIndex << ":\n";
-            for (int pin = 1; pin <= selectedIC->getTotalPins(); ++pin) {
-                cout << "Pin " << pin << ": " << selectedIC->getPin(pin) << " ";
+            for (int pin = 1; pin <= selectedIC -> getTotalPins(); ++pin) {
+                cout << "Pin " << pin << ": " << selectedIC -> getPin(pin) << " ";
             }
             cout << "\n-----------------------------------\n";
-            cout << "Enter pin number to set (1-" << selectedIC->getTotalPins() << "): ";
+            cout << "Enter pin number to set (1-" << selectedIC -> getTotalPins() << "): ";
             cin >> pin;
-            if (pin < 1 || pin > selectedIC->getTotalPins()) {
+            if (pin < 1 || pin > selectedIC -> getTotalPins()) {
                 cout << "Invalid pin number.\n";
                 continue;
             }
-            else if(pin == selectedIC->vccPin || pin == selectedIC->groundPin) {
+            else if ((pin == selectedIC -> vccPin) || (pin == selectedIC -> groundPin)) {
                 cout << "Cannot set VCC or GND pin value.\n";
                 continue;
             }
@@ -116,12 +116,11 @@ int main() {
             cin >> value;
 
             try {
-                selectedIC->setPin(pin, value);
+                selectedIC -> setPin(pin, value);
                 //changing values for pins connected by wire without accessing the private members  
                 for (Wire* wire : wireList) {
-                    if (wire->getSourceIC() == selectedIC && wire->getSourcePin() == pin) {
-                        wire->connect();
-                    }
+                    if (wire -> getSourceIC() == selectedIC && wire -> getSourcePin() == pin)
+                        wire -> connect();
                 }
 
                 cout << "Pin value set successfully.\n";
@@ -140,24 +139,24 @@ int main() {
             int srcPin, destPin;
             cout << "ICs available: \n";
             for (size_t i = 0; i < icList.size(); ++i) {
-                cout << i + 1 << ". " << icList[i]->getName() << endl;
+                cout << i + 1 << ". " << icList[i] -> getName() << endl;
             }
             cout << "-----------------------------------\n";
             cout << "Select source IC index (1-" << icList.size() << "): ";
             cin >> srcIC;
             cout << "Pin values of IC " << srcIC << ":\n";
-            for (int pin = 1; pin <= icList[srcIC - 1]->getTotalPins(); ++pin) {
-                cout << "Pin " << pin << ": " << icList[srcIC - 1]->getPin(pin) << " ";
-            }
+            for (int pin = 1; pin <= icList[srcIC - 1] -> getTotalPins(); ++pin)
+                cout << "Pin " << pin << ": " << icList[srcIC - 1] -> getPin(pin) << " ";
+
             cout << "\n-----------------------------------\n";
             cout << "Enter source pin: ";
             cin >> srcPin;
             cout << "Select destination IC index (1-" << icList.size() << "): ";
             cin >> destIC;
             cout << "Pin values of IC " << destIC << ":\n";
-            for (int pin = 1; pin <= icList[destIC - 1]->getTotalPins(); ++pin) {
-                cout << "Pin " << pin << ": " << icList[destIC - 1]->getPin(pin) << " ";
-            }
+            for (int pin = 1; pin <= icList[destIC - 1] -> getTotalPins(); ++pin)
+                cout << "Pin " << pin << ": " << icList[destIC - 1] -> getPin(pin) << " ";
+
             cout << "\n-----------------------------------\n";
             cout << "Enter destination pin: ";
             cin >> destPin;
@@ -169,7 +168,7 @@ int main() {
 
             try {
                 Wire* newWire = new Wire(icList[srcIC - 1], srcPin, icList[destIC - 1], destPin);
-                newWire->connect();
+                newWire -> connect();
                 wireList.push_back(newWire);
                 cout << "Wire connected successfully.\n";
             } catch (const exception& e) {
@@ -185,9 +184,9 @@ int main() {
 
             size_t icIndex;
             cout << "ICs available: \n";
-            for (size_t i = 0; i < icList.size(); ++i) {
-                cout << i + 1 << ". " << icList[i]->getName() << endl;
-            }
+            for (size_t i = 0; i < icList.size(); ++i)
+                cout << i + 1 << ". " << icList[i] -> getName() << endl;
+
             cout << "-----------------------------------\n";
             cout << "Select IC index to simulate (1-" << icList.size() << "): ";
             cin >> icIndex;
@@ -197,7 +196,7 @@ int main() {
             }
 
             try {
-                icList[icIndex - 1]->simulate();
+                icList[icIndex - 1] -> simulate();
                 cout << "IC simulation completed successfully.\n";
             } catch (const exception& e) {
                 cout << "Error: " << e.what() << endl;
@@ -212,9 +211,9 @@ int main() {
 
             size_t icIndex;
             cout << "ICs available: \n";
-            for (size_t i = 0; i < icList.size(); ++i) {
-                cout << i + 1 << ". " << icList[i]->getName() << endl;
-            }
+            for (size_t i = 0; i < icList.size(); ++i)
+                cout << i + 1 << ". " << icList[i] -> getName() << endl;
+
             cout << "-----------------------------------\n";
             cout << "Select IC index to connect power and ground (1-" << icList.size() << "): ";
             cin >> icIndex;
@@ -224,8 +223,8 @@ int main() {
             }
 
             try {
-                icList[icIndex - 1]->connectVCC();
-                icList[icIndex - 1]->connectGround();
+                icList[icIndex - 1] -> connectVCC();
+                icList[icIndex - 1] -> connectGround();
                 cout << "Power and ground connected to IC.\n";
             } catch (const exception& e) {
                 cout << "Error: " << e.what() << endl;
@@ -239,10 +238,10 @@ int main() {
             }
 
             for (size_t i = 0; i < icList.size(); ++i) {
-                cout << "IC " << i + 1 << " (" << icList[i]->getName() << "): ";
-                for (int pin = 1; pin <= icList[i]->getTotalPins(); ++pin) {
+                cout << "IC " << i + 1 << " (" << icList[i] -> getName() << "): ";
+                for (int pin = 1; pin <= icList[i] -> getTotalPins(); ++pin) {
                     try {
-                        cout << "Pin " << pin << ": " << icList[i]->getPin(pin) << " ";
+                        cout << "Pin " << pin << ": " << icList[i] -> getPin(pin) << " ";
                     } catch (const exception&) {
                         cout << "N/A ";
                     }
@@ -256,9 +255,8 @@ int main() {
             break;
         }
 
-        else {
+        else
             cout << "Invalid choice. Try again.\n";
-        }
     }
 
     // Clean up dynamically allocated memory
