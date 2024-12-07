@@ -1,0 +1,12 @@
+Select IC (1-5): IC 5 selected.
+Enter pin number to set (1-10): Pin 1 selected.
+Set pin 1 to LOW (0).
+Select IC (1-5): IC 3 selected.
+Enter pin number to set (1-10): Pin 4 selected.
+Set pin 4 to HIGH (1).
+Enter source IC (1-5) for connection: Source IC 2 selected.
+Enter destination IC (1-5) for connection: Destination IC 3 selected.
+Enter source pin (1-10): Source pin 1 selected.
+Enter destination pin (1-10): Destination pin 5 selected.
+Connecting pin 1 of IC 2 to pin 5 of IC 3.
+Exiting simulation. Goodbye!
