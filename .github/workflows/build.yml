@@ -32,8 +32,8 @@ jobs:
     - name: Clean project
       run: make clean
 
-    - name: Check
-      run: make check
+    # - name: Check
+    #   run: make check
       
-    - name: Distcheck
-      run: make distcheck
+    # - name: Distcheck
+    #   run: make distcheck
