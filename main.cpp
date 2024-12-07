@@ -1,11 +1,11 @@
-#include "../include/ANDGateIC.hpp"
-#include "../include/ORGateIC.hpp"
-#include "../include/NOTGateIC.hpp"
-#include "../include/XORGateIC.hpp"
-#include "../include/NANDGateIC.hpp"
-#include "../include/NORGateIC.hpp"
-#include "../include/XNORGateIC.hpp"
-#include "../include/Wire.hpp"
+#include "./include/ANDGateIC.hpp"
+#include "./include/ORGateIC.hpp"
+#include "./include/NOTGateIC.hpp"
+#include "./include/XORGateIC.hpp"
+#include "./include/NANDGateIC.hpp"
+#include "./include/NORGateIC.hpp"
+#include "./include/XNORGateIC.hpp"
+#include "./include/Wire.hpp"
 #include <string>
 #include <vector>
 

@@ -50,8 +50,7 @@ The project consists of the following files:
 
 - **Operator Overloading**: Use operators for pin manipulation, IC comparison, and power connections.
 
-- **Error Handling**:  
-  The program handles invalid inputs and operations gracefully.
+- **Error Handling**: The program handles invalid inputs and operations gracefully.
 
 - **Virtual Functions**: Define a `simulate()` function for IC-specific behavior and execute digital logic. Simulate individual ICs and view pin states after simulation.
 
@@ -97,7 +96,7 @@ As you have made sure that you're up-to-date, you are now ready to continue ahea
    ./simulator
    ```
 
-### Make installation
+#### **Using CMake (Optional)**
 
 **Note:** Skip this section if `make --version` gives desired output in your git bash
 
@@ -130,7 +129,7 @@ sudo apt install build-essential
 brew install make
 ```
 
-### Verify Installation
+#### Verify Installation
  - Open a new Git Bash window to refresh your PATH.
 - Run:
 
@@ -139,7 +138,7 @@ make --version
 ```
 This should display the version of `make` if it’s installed correctly.
 
-### Implementation 
+#### Implementation 
 **Create the Project using Makefile:**
 ```bash
 make
@@ -180,7 +179,7 @@ The base class for all ICs.
 ### Logic Gate ICs <br>
 Each gate IC (`ANDGateIC`, `ORGateIC`, `NOTGateIC`, `NORGateIC`, `NANDGateIC`, `XORGateIC`, `XNNORGateIC`) inherits from `IC` and overrides the `simulate()` method to perform specific logic operations.
 
-Follow the on-screen menu to:
+### Follow the on-screen menu to:
    - Create ICs.
    - Set pin values.
    - Connect ICs with wires.
@@ -219,7 +218,7 @@ DigitalLogicSimulator/
 │   ├── XNORGateIC.cpp
 │   └── Wire.cpp
 ├── main.cpp
-├── CMakeLists.txt
+├── Makefile
 └── README.md
 ```
 
@@ -227,7 +226,7 @@ DigitalLogicSimulator/
 ## Example
 Below is a sample usage example:
 ```bash
-#include "../include/Wire.hpp"
+#include "./include/Wire.hpp"
 #include <ANDGateIC.hpp>
 #include <ORGateIC.hpp>
 
