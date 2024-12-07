@@ -1,7 +1,6 @@
 # Compiler and flags
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Iinclude -Wall -Wextra -pedantic
-LDFLAGS = -static
 
 # Project name
 TARGET = DCSimulator
