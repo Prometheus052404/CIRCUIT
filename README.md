@@ -1,6 +1,8 @@
 # **Digital Circuit Simulation Project**
 
-This project simulates a Digital Circuit System that allows users to create, simulate, and analyze the behavior of basic combinational logic ICs using classes representing different types of Integrated Circuits (ICs) like AND, OR, NOT, NOR, NAND, XOR, XNOR gates, and a system to connect and interact with these ICs.<br><br>The project demonstrates Object-Oriented Programming concepts in C++ (like Encapsulation, Abstraction, Operator Overloading, Inheritance, Polymorphism and Exception handling) and provides an interactive menu-driven interface for designing circuits dynamically by connecting ICs and wires, setting pin values, and observing results.<br>
+This project simulates a Digital Circuit System that allows users to create, simulate, and analyze the behavior of basic combinational logic ICs using classes representing different types of Integrated Circuits (ICs) like AND, OR, NOT, NOR, NAND, XOR, XNOR gates, and a system to connect and interact with these ICs.<br><br>The project demonstrates Object-Oriented Programming concepts in C++ (like Encapsulation, Abstraction, Operator Overloading, Inheritance, Polymorphism and Exception handling) and provides an interactive menu-driven interface for designing circuits dynamically by connecting ICs and wires, setting pin values, and observing results.
+
+<br>
 
 ## Table of Contents
 
@@ -170,6 +172,7 @@ make clean
 - **Create IC objects**: Instantiate various IC objects, e.g., `ANDGateIC`, `ORGateIC`.
 - **Connect Power**: Connect VCC and GND to the ICs to simulate power supply.
 - **Simulate**: Call the `simulate()` function on each IC to execute its digital logic.
+<br>
 
 ## Classes and Their Functions
 ### Class `IC`
@@ -205,6 +208,7 @@ Each gate IC (`ANDGateIC`, `ORGateIC`, `NOTGateIC`, `NORGateIC`, `NANDGateIC`, `
 To exit the simulator, choose the `Exit` option from the menu.
 
 <br>
+
 ## **Code Structure**
 
 ```
