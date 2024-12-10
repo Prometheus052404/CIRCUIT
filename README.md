@@ -33,7 +33,7 @@ The project consists of the following files:
 ## **Features**
 - **Interactive User Input**:  
   The program uses a menu-driven interface to guide users through creating and managing circuits.
-  - **Supported ICs**:  
+  <br><br> **Supported ICs**:  
   - AND Gate IC  
   - OR Gate IC  
   - NOT Gate IC  
