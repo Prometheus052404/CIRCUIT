@@ -3,14 +3,14 @@ Project done by Team-64 (CS23I1027 - Harith Yerragolam and CS23I1064 - Parth Pan
 https://github.com/Prometheus052404/CIRCUIT
 */
 
-#include "./include/ANDGateIC.hpp"
-#include "./include/ORGateIC.hpp"
-#include "./include/NOTGateIC.hpp"
-#include "./include/XORGateIC.hpp"
-#include "./include/NANDGateIC.hpp"
-#include "./include/NORGateIC.hpp"
-#include "./include/XNORGateIC.hpp"
-#include "./include/Wire.hpp"
+#include "./src/ANDGateIC.cpp"
+#include "./src/ORGateIC.cpp"
+#include "./src/NOTGateIC.cpp"
+#include "./src/XORGateIC.cpp"
+#include "./src/NANDGateIC.cpp"
+#include "./src/NORGateIC.cpp"
+#include "./src/XNORGateIC.cpp"
+#include "./src/Wire.cpp"
 #include <memory>
 
 // Template for validating user input
@@ -203,3 +203,12 @@ int main() {
         }
     }
 }
+
+template class ANDGateIC<int>;
+template class ORGateIC<int>;
+template class NOTGateIC<int>;
+template class XORGateIC<int>;
+template class NANDGateIC<int>;
+template class NORGateIC<int>;
+template class XNORGateIC<int>;
+template class Wire<int>;
