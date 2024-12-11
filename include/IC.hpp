@@ -10,27 +10,25 @@ https://github.com/Prometheus052404/CIRCUIT
 
 #include <iostream>
 #include <stdexcept>
+#include <string>
 
 using namespace std;
 
 class IC {
-
     protected:
         string name;          // Name of the IC
         int* pins;            // Dynamic array to hold pin values
         int pinCount;         // Number of pins
-        
-        bool powerConnected;
-        bool groundConnected;
-
-    public:
         int vccPin;           // VCC pin number
         int groundPin;        // GND pin number
+        bool powerConnected;  // Power connection state
+        bool groundConnected; // Ground connection state
+
+    public:
         IC(int pinCount, int vccPin, int groundPin, const string& name = "Generic IC");
         IC(int pinCount) : pinCount(pinCount) {}
         virtual ~IC() = default;
 
-        
         int getTotalPins() const;
         void connectVCC();
         void connectGround();
