@@ -157,8 +157,22 @@ int main() {
                 }
 
                 IC<int>* selectedIC = icList[icIndex - 1];
+                cout << "Pin values of IC " << icIndex << ":\n";
+                for (int pin = 1; pin <= selectedIC -> getTotalPins(); ++pin)
+                    cout << "Pin " << pin << ": " << selectedIC -> getPin(pin) << " ";
+    
+                cout << "\n-----------------------------------\n";
                 cout << "Enter pin number to set (1-" << selectedIC -> getTotalPins() << "): ";
                 cin >> pin;
+
+                if (pin < 1 || pin > selectedIC -> getTotalPins()) {
+                    cout << "Invalid pin number.\n";
+                    continue;
+                }
+                else if ((pin == selectedIC -> getVccPin()) || (pin == selectedIC -> getGroundPin())) {
+                    cout << "Cannot set VCC or GND pin value.\n";
+                    continue;
+                }
                 cout << "Enter value for pin " << pin << " (0/1): ";
                 cin >> value;
 

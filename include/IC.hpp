@@ -39,6 +39,13 @@ class IC {
         void setPin(int pin, T value);
         T getPin(int pin) const;
 
+        public:
+
+        int getVccPin() const { return vccPin; }
+
+        int getGroundPin() const { return groundPin; }
+
+
         T operator[](int pinNumber);
         void operator()(int pinOut, IC& otherIC, int pinIn);
         IC& operator+=(const string& connection);
