@@ -15,35 +15,35 @@ https://github.com/Prometheus052404/CIRCUIT
 using namespace std;
 
 class IC {
-protected:
-    string name;          // Name of the IC
-    int* pins;            // Dynamic array to hold pin values
-    int pinCount;         // Number of pins
-    int vccPin;           // VCC pin number
-    int groundPin;        // GND pin number
-    bool powerConnected;  // Power connection state
-    bool groundConnected; // Ground connection state
+    protected:
+        string name;          // Name of the IC
+        int* pins;            // Dynamic array to hold pin values
+        int pinCount;         // Number of pins
+        int vccPin;           // VCC pin number
+        int groundPin;        // GND pin number
+        bool powerConnected;  // Power connection state
+        bool groundConnected; // Ground connection state
 
-public:
-    IC(int pinCount, int vccPin, int groundPin, const string& name = "Generic IC");
-    IC(int pinCount) : pinCount(pinCount) {}
-    virtual ~IC() = default;
+    public:
+        IC(int pinCount, int vccPin, int groundPin, const string& name = "Generic IC");
+        IC(int pinCount) : pinCount(pinCount) {}
+        virtual ~IC() = default;
 
-    int getTotalPins() const;
-    void connectVCC();
-    void connectGround();
-    void setPin(int pin, int value);
-    int getPin(int pin) const;
+        int getTotalPins() const;
+        void connectVCC();
+        void connectGround();
+        void setPin(int pin, int value);
+        int getPin(int pin) const;
 
-    int& operator[](int pinNumber);
-    void operator()(int pinOut, IC& otherIC, int pinIn);
-    IC& operator+=(const std::string& connection);
-    bool operator==(const IC& other) const;
-    IC& operator!();
+        int& operator[](int pinNumber);
+        void operator()(int pinOut, IC& otherIC, int pinIn);
+        IC& operator+=(const std::string& connection);
+        bool operator==(const IC& other) const;
+        IC& operator!();
 
-    const string& getName() const { return name; } // Getter for IC name
+        const string& getName() const { return name; } // Getter for IC name
 
-    virtual void simulate() = 0; // Pure virtual function for IC-specific logic
+        virtual void simulate() = 0; // Pure virtual function for IC-specific logic
 };
 
 #endif // End of include guard for IC_HPP
