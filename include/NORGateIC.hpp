@@ -1,6 +1,7 @@
 #include "IC.hpp"
 
-class NORGateIC : public IC {
+template <typename T>
+class NORGateIC : public IC<T> {
     public:
         NORGateIC();
         void simulate() override;

@@ -1,6 +1,7 @@
 #include "IC.hpp"
 
-class NANDGateIC : public IC {
+template <typename T>
+class NANDGateIC : public IC<T> {
     public:
         NANDGateIC();
         void simulate() override;

@@ -1,6 +1,7 @@
 #include "IC.hpp"
 
-class ANDGateIC : public IC {
+template <typename T>
+class ANDGateIC : public IC<T> {
     public: ANDGateIC();   // Constructor
     public: void simulate() override; // Override simulate method
 };

@@ -1,6 +1,7 @@
 #include "IC.hpp"
 
-class NOTGateIC : public IC {
+template <typename T>
+class NOTGateIC : public IC<T> {
     public:
         NOTGateIC();
         void simulate() override;
