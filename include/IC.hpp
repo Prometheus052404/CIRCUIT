@@ -11,13 +11,16 @@ https://github.com/Prometheus052404/CIRCUIT
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 using namespace std;
 
+template <typename T = int> // Default type for pins is `int`
 class IC {
     protected:
         string name;          // Name of the IC
-        int* pins;            // Dynamic array to hold pin values
+        vector<T> pins;       // Dynamic array to hold pin values
+        //int* pins;            // Dynamic array to hold pin values
         int pinCount;         // Number of pins
         int vccPin;           // VCC pin number
         int groundPin;        // GND pin number
@@ -26,18 +29,26 @@ class IC {
 
     public:
         IC(int pinCount, int vccPin, int groundPin, const string& name = "Generic IC");
-        IC(int pinCount) : pinCount(pinCount) {}
+        explicit IC(int pinCount) : pins(pinCount, T()), pinCount(pinCount) {}
+
         virtual ~IC() = default;
 
         int getTotalPins() const;
         void connectVCC();
         void connectGround();
-        void setPin(int pin, int value);
-        int getPin(int pin) const;
+        void setPin(int pin, T value);
+        T getPin(int pin) const;
 
-        int& operator[](int pinNumber);
+        public:
+
+        int getVccPin() const { return vccPin; }
+
+        int getGroundPin() const { return groundPin; }
+
+
+        T operator[](int pinNumber);
         void operator()(int pinOut, IC& otherIC, int pinIn);
-        IC& operator+=(const std::string& connection);
+        IC& operator+=(const string& connection);
         bool operator==(const IC& other) const;
         IC& operator!();
 
