@@ -554,7 +554,7 @@ int main() {
 - Use frameworks like Qt for GUI or text-based interfaces.
 
 4. **Testing Framework**
-- Automate testing for IC behaviors with predefined input-output pairs.
+- Automate testing for IC behaviors with predefined input-output pairs, possibly using CMake.
 - Create detailed error logs for invalid connections or simulations.
 
 5. **Extensibility**
