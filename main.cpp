@@ -171,6 +171,80 @@ int main() {
             connectICs(*icList[srcIC - 1], srcPin, *icList[destIC - 1], destPin);
         } 
         
+        else if (choice == 5) {
+            if (icList.empty()) {
+                cout << "No ICs available to simulate.\n";
+                continue;
+            }
+
+            size_t icIndex;
+            cout << "ICs available: \n";
+            for (size_t i = 0; i < icList.size(); ++i)
+                cout << i + 1 << ". " << icList[i] -> getName() << endl;
+
+            cout << "-----------------------------------\n";
+            cout << "Select IC index to simulate (1-" << icList.size() << "): ";
+            cin >> icIndex;
+            if (icIndex < 1 || icIndex > icList.size()) {
+                cout << "Invalid IC index.\n";
+                continue;
+            }
+
+            try {
+                icList[icIndex - 1] -> simulate();
+                cout << "IC simulation completed successfully.\n";
+            } catch (const exception& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
+
+        else if (choice == 6) {
+            if (icList.empty()) {
+                cout << "No ICs available to connect power and ground.\n";
+                continue;
+            }
+
+            size_t icIndex;
+            cout << "ICs available: \n";
+            for (size_t i = 0; i < icList.size(); ++i)
+                cout << i + 1 << ". " << icList[i] -> getName() << endl;
+
+            cout << "-----------------------------------\n";
+            cout << "Select IC index to connect power and ground (1-" << icList.size() << "): ";
+            cin >> icIndex;
+            if (icIndex < 1 || icIndex > icList.size()) {
+                cout << "Invalid IC index.\n";
+                continue;
+            }
+
+            try {
+                icList[icIndex - 1] -> connectVCC();
+                icList[icIndex - 1] -> connectGround();
+                cout << "Power and ground connected to IC.\n";
+            } catch (const exception& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
+
+        else if (choice == 7) {
+            if (icList.empty()) {
+                cout << "No ICs available to view.\n";
+                continue;
+            }
+
+            for (size_t i = 0; i < icList.size(); ++i) {
+                cout << "IC " << i + 1 << " (" << icList[i] -> getName() << "): ";
+                for (int pin = 1; pin <= icList[i] -> getTotalPins(); ++pin) {
+                    try {
+                        cout << "Pin " << pin << ": " << icList[i] -> getPin(pin) << " ";
+                    } catch (const exception&) {
+                        cout << "N/A ";
+                    }
+                }
+                cout << endl;
+            }
+        }
+
         else if (choice == 8) {
             cout << "Exiting program...\n";
             break;
