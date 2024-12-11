@@ -5,21 +5,23 @@
 #include <string>
 using namespace std;
 
+template <typename T>
 class IC; // Forward declaration to allow IC usage in Wire
 
+template <typename T>
 class Wire {
-private:
-    IC* sourceIC;
+    IC<T>* sourceIC;
     int sourcePin;
-    IC* destinationIC;
+    IC<T>* destinationIC;
+    int destinationPin;
     int destinationPin;
 
 public:
-    //get function
+    IC<T>* getSourceIC() const { return sourceIC; }
     IC* getSourceIC() const { return sourceIC; }
-    int getSourcePin() const { return sourcePin; }
+    IC<T>* getDestinationIC() const { return destinationIC; }
     IC* getDestinationIC() const { return destinationIC; }
-    int getDestinationPin() const { return destinationPin; }
+    Wire(IC<T>* srcIC, int srcPin, IC<T>* destIC, int destPin);
     Wire(IC* srcIC, int srcPin, IC* destIC, int destPin);
     ~Wire();
 

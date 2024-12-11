@@ -1,6 +1,7 @@
 #include "IC.hpp"
 
-class ORGateIC : public IC {
+template <typename T>
+class ORGateIC : public IC<T> {
     public:
         ORGateIC();
         void simulate() override;
