@@ -18,6 +18,7 @@ class Wire {
 public:
     IC<T>* getSourceIC() const { return sourceIC; }
     IC<T>* getDestinationIC() const { return destinationIC; }
+    int getSourcePin() const { return sourcePin; }
     Wire(IC<T>* srcIC, int srcPin, IC<T>* destIC, int destPin); 
     ~Wire();
 
