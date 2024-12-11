@@ -1,3 +1,6 @@
+#ifndef XORGATEIC_HPP
+#define XORGATEIC_HPP
+
 #include "IC.hpp"
 
 template <typename T>
@@ -6,3 +9,5 @@ class XORGateIC : public IC<T> {
         XORGateIC();
         void simulate() override;
 };
+
+#endif // XORGATEIC_HPP

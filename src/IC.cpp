@@ -5,9 +5,6 @@ IC<T> :: IC(int pinCount, int vccPin, int groundPin, const string& name)
     : name(name), pins(pinCount, T()), pinCount(pinCount), vccPin(vccPin), groundPin(groundPin), powerConnected(false), groundConnected(false) {}
 
 template <typename T>
-IC<T> :: IC(int pinCount) : pinCount(pinCount), pins(pinCount, T()) {}
-
-template <typename T>
 int IC<T> :: getTotalPins() const {
         return pinCount;
     }
@@ -47,7 +44,7 @@ T IC<T> :: getPin(int pin) const {
 }
 
 template <typename T>
-T& IC<T> :: operator[](int pinNumber) {
+T IC<T> :: operator[](int pinNumber) {
     if ((pinNumber >= 0) && (pinNumber < pinCount))
         return pins[pinNumber-1];
     else

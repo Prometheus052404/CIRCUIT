@@ -29,7 +29,8 @@ class IC {
 
     public:
         IC(int pinCount, int vccPin, int groundPin, const string& name = "Generic IC");
-        IC(int pinCount) : pinCount(pinCount) {}
+        explicit IC(int pinCount) : pins(pinCount, T()), pinCount(pinCount) {}
+
         virtual ~IC() = default;
 
         int getTotalPins() const;
@@ -38,9 +39,9 @@ class IC {
         void setPin(int pin, T value);
         T getPin(int pin) const;
 
-        T& operator[](int pinNumber);
+        T operator[](int pinNumber);
         void operator()(int pinOut, IC& otherIC, int pinIn);
-        IC& operator+=(const std::string& connection);
+        IC& operator+=(const string& connection);
         bool operator==(const IC& other) const;
         IC& operator!();
 

@@ -14,15 +14,11 @@ class Wire {
     int sourcePin;
     IC<T>* destinationIC;
     int destinationPin;
-    int destinationPin;
 
 public:
     IC<T>* getSourceIC() const { return sourceIC; }
-    IC* getSourceIC() const { return sourceIC; }
     IC<T>* getDestinationIC() const { return destinationIC; }
-    IC* getDestinationIC() const { return destinationIC; }
-    Wire(IC<T>* srcIC, int srcPin, IC<T>* destIC, int destPin);
-    Wire(IC* srcIC, int srcPin, IC* destIC, int destPin);
+    Wire(IC<T>* srcIC, int srcPin, IC<T>* destIC, int destPin); 
     ~Wire();
 
     void connect();
