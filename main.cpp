@@ -15,8 +15,6 @@ https://github.com/Prometheus052404/CIRCUIT
 #include <vector>
 #include <iostream>
 
-using namespace std;
-
 // Template for validating user input
 template <typename T>
 bool validateInput(T input, T minValue, T maxValue) {
@@ -29,9 +27,10 @@ void setPinValue(T& ic, int pin, bool value) {
     if (validateInput(pin, 1, ic.getTotalPins())) {
         ic.setPin(pin, value);
         cout << "Pin " << pin << " on IC set to " << value << endl;
-    } else {
+    } 
+    
+    else
         cout << "Invalid pin number!" << endl;
-    }
 }
 
 // Template for connecting pins between two ICs
@@ -42,9 +41,10 @@ void connectICs(T1& srcIC, int srcPin, T2& destIC, int destPin) {
         destIC.setPin(destPin, srcIC.getPin(srcPin));
         cout << "Connected IC " << srcIC.getName() << " pin " << srcPin
              << " to IC " << destIC.getName() << " pin " << destPin << endl;
-    } else {
+    } 
+    
+    else
         cout << "Invalid pin connection!" << endl;
-    }
 }
 
 int main() {
@@ -80,7 +80,9 @@ int main() {
             for (size_t i = 0; i < icList.size(); ++i) {
                 cout << i + 1 << ". " << icList[i]->getName() << endl;
             }
-        } else if (choice == 2) {
+        } 
+        
+        else if (choice == 2) {
             cout << "Select IC type:\n";
             cout << "1. AND Gate\n2. OR Gate\n3. NOT Gate\n4. XOR Gate\n5. NAND Gate\n6. NOR Gate\n7. XNOR Gate\n";
             int icType;
@@ -110,7 +112,9 @@ int main() {
 
             icList.push_back(newIC);
             cout << "IC created and added to the circuit.\n";
-        } else if (choice == 3) {
+        } 
+        
+        else if (choice == 3) {
             if (icList.empty()) {
                 cout << "No ICs available. Create an IC first.\n";
                 continue;
@@ -138,7 +142,9 @@ int main() {
             cin >> value;
 
             setPinValue(*selectedIC, pin, value);
-        } else if (choice == 4) {
+        } 
+        
+        else if (choice == 4) {
             if (icList.size() < 2) {
                 cout << "At least two ICs are required for connection.\n";
                 continue;
@@ -163,12 +169,15 @@ int main() {
             }
 
             connectICs(*icList[srcIC - 1], srcPin, *icList[destIC - 1], destPin);
-        } else if (choice == 8) {
+        } 
+        
+        else if (choice == 8) {
             cout << "Exiting program...\n";
             break;
-        } else {
+        } 
+        
+        else
             cout << "Invalid choice. Try again.\n";
-        }
     }
 
     // Cleanup
