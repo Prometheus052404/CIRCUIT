@@ -38,7 +38,9 @@ void connectICs(T1& srcIC, int srcPin, T2& destIC, int destPin) {
         destIC.setPin(destPin, srcIC.getPin(srcPin));
         cout << "Connected IC " << srcIC.getName() << " pin " << srcPin
              << " to IC " << destIC.getName() << " pin " << destPin << endl;
-    } else {
+    } 
+    
+    else {
         cout << "Invalid pin connection!" << endl;
     }
 }
