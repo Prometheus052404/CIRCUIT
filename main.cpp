@@ -176,6 +176,19 @@ int main() {
                 cout << "Enter value for pin " << pin << " (0/1): ";
                 cin >> value;
 
+                try {
+                    selectedIC -> setPin(pin, value);
+                    //changing values for pins connected by wire without accessing the private members  
+                    for (Wire<int>* wire : wireList) {
+                        if (wire -> getSourceIC() == selectedIC && wire -> getSourcePin() == pin)
+                            wire -> connect();
+                    }
+
+                    cout << "Pin value set successfully.\n";
+                } catch (const exception& e) {
+                    cout << "Error: " << e.what() << endl;
+                }
+
                 setPinValue(*selectedIC, pin, value);
                 break;
             }
