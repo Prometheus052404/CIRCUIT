@@ -105,7 +105,30 @@ As you have made sure that you're up-to-date, you are now ready to continue ahea
    ./simulator
    ```
 
+
 #### **Using CMake (Optional)**
+1: Create a 'build' directory:
+```bash
+mkdir build && cd build
+```
+
+2: Generate Makefiles from CMake:
+```bash
+cmake ..
+```
+
+3: Build using Make:
+```bash
+make
+```
+
+4: Run the program:
+```bash
+./bin/DigitalLogicSimulator
+```
+
+
+#### **Using Make (Optional)**
 
 **Note:** Skip this section if `make --version` gives desired output in your git bash
 
