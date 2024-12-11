@@ -13,8 +13,6 @@ https://github.com/Prometheus052404/CIRCUIT
 #include "./include/Wire.hpp"
 #include <memory>
 
-using namespace std;
-
 // Template for validating user input
 template <typename T>
 bool validateInput(T input, T minValue, T maxValue) {
@@ -62,21 +60,22 @@ void displayMenu() {
 }
 
 // Function to create a new IC
-IC* createIC() {
+template <typename T>
+IC<T>* createIC() {
     cout << "Select IC type:\n";
     cout << "1. AND Gate\n2. OR Gate\n3. NOT Gate\n4. XOR Gate\n5. NAND Gate\n6. NOR Gate\n7. XNOR Gate\n";
     int icType;
     cin >> icType;
 
-    IC* newIC = nullptr;
+    IC<T>* newIC = nullptr;
     switch (icType) {
-        case 1: newIC = new ANDGateIC(); break;
-        case 2: newIC = new ORGateIC(); break;
-        case 3: newIC = new NOTGateIC(); break;
-        case 4: newIC = new XORGateIC(); break;
-        case 5: newIC = new NANDGateIC(); break;
-        case 6: newIC = new NORGateIC(); break;
-        case 7: newIC = new XNORGateIC(); break;
+        case 1: newIC = new ANDGateIC<T>(); break;
+        case 2: newIC = new ORGateIC<T>(); break;
+        case 3: newIC = new NOTGateIC<T>(); break;
+        case 4: newIC = new XORGateIC<T>(); break;
+        case 5: newIC = new NANDGateIC<T>(); break;
+        case 6: newIC = new NORGateIC<T>(); break;
+        case 7: newIC = new XNORGateIC<T>(); break;
         default: cout << "Invalid choice.\n"; return nullptr;
     }
 
@@ -94,7 +93,8 @@ IC* createIC() {
 }
 
 // Function to view available ICs
-void viewICs(const vector<IC*>& icList) {
+template <typename T>
+void viewICs(const vector<IC<T>*>& icList) {
     if (icList.empty()) {
         cout << "No ICs available.\n";
         return;
@@ -107,14 +107,16 @@ void viewICs(const vector<IC*>& icList) {
 }
 
 // Function to cleanup resources
-void cleanup(vector<IC*>& icList, vector<Wire*>& wireList) {
-    for (IC* ic : icList) delete ic;
-    for (Wire* wire : wireList) delete wire;
+template <typename T>
+void cleanup(vector<IC<T>*>& icList, vector<Wire<T>*>& wireList) {
+    for (IC<T>* ic : icList) delete ic;
+    for (Wire<T>* wire : wireList) delete wire;
 }
 
+
 int main() {
-    vector<IC*> icList;
-    vector<Wire*> wireList;
+    vector<IC<int>*> icList;
+    vector<Wire<int>*> wireList;
 
     while (true) {
         displayMenu();
@@ -127,7 +129,7 @@ int main() {
                 break;
 
             case 2: { // Create a new IC
-                IC* newIC = createIC();
+                IC<int>* newIC = createIC<int>();
                 if (newIC) {
                     icList.push_back(newIC);
                     cout << "IC created and added to the circuit.\n";
@@ -152,8 +154,8 @@ int main() {
                     break;
                 }
 
-                IC* selectedIC = icList[icIndex - 1];
-                cout << "Enter pin number to set (1-" << selectedIC->getTotalPins() << "): ";
+                IC<int>* selectedIC = icList[icIndex - 1];
+                cout << "Enter pin number to set (1-" << selectedIC -> getTotalPins() << "): ";
                 cin >> pin;
                 cout << "Enter value for pin " << pin << " (0/1): ";
                 cin >> value;
