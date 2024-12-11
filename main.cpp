@@ -204,11 +204,23 @@ int main() {
                 int srcPin, destPin;
                 cout << "Select source IC index (1-" << icList.size() << "): ";
                 cin >> srcIC;
+                cout << "Pin values of IC " << srcIC << ":\n";
+                for (int pin = 1; pin <= icList[srcIC - 1] -> getTotalPins(); ++pin)
+                    cout << "Pin " << pin << ": " << icList[srcIC - 1] -> getPin(pin) << " ";
+
+                cout << "\n-----------------------------------\n";
                 cout << "Enter source pin: ";
                 cin >> srcPin;
 
                 cout << "Select destination IC index (1-" << icList.size() << "): ";
                 cin >> destIC;
+
+                cout << "Pin values of IC " << destIC << ":\n";
+                for (int pin = 1; pin <= icList[destIC - 1] -> getTotalPins(); ++pin)
+                    cout << "Pin " << pin << ": " << icList[destIC - 1] -> getPin(pin) << " ";
+
+                cout << "\n-----------------------------------\n";
+
                 cout << "Enter destination pin: ";
                 cin >> destPin;
 
