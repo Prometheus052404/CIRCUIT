@@ -1,9 +1,13 @@
+#ifndef XNORGATEIC_HPP
+#define XNORGATEIC_HPP
+
 #include "IC.hpp"
 
-class XNORGateIC : public IC {
+template <typename T>
+class XNORGateIC : public IC<T> {
     public:
         XNORGateIC();
         void simulate() override;
-
-    private:
 };
+
+#endif // XNORGATEIC_HPP

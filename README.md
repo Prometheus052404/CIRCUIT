@@ -1,6 +1,7 @@
 # **Digital Circuit Simulation Project**
 
 This project simulates a Digital Circuit System that allows users to create, simulate, and analyze the behavior of basic combinational logic ICs using classes representing different types of Integrated Circuits (ICs) like AND, OR, NOT, NOR, NAND, XOR, XNOR gates, and a system to connect and interact with these ICs.<br><br>The project demonstrates Object-Oriented Programming concepts in C++ (like Encapsulation, Abstraction, Operator Overloading, Inheritance, Polymorphism and Exception handling) and provides an interactive menu-driven interface for designing circuits dynamically by connecting ICs and wires, setting pin values, and observing results.
+<br>
 
 ## Table of Contents
 
@@ -13,6 +14,7 @@ This project simulates a Digital Circuit System that allows users to create, sim
 - [Example](#example)
 - [Future Implementation](#future-implementation)
 - [License](#license)
+<br>
 
 ## Project Structure
 
@@ -26,11 +28,12 @@ The project consists of the following files:
 - `NANDGateIC.hpp` and `NANDGateIC.cpp`: Class `NANDGateIC` to simulate a NAND gate IC.
 - `XORateIC.hpp` and `XORGateIC.cpp`: Class `XORGateIC` to simulate a XOR gate IC.
 - `NORGateIC.hpp` and `XNORGateIC.cpp`: Class `XNORGateIC` to simulate a XNOR gate IC.
+<br>
 
 ## **Features**
 - **Interactive User Input**:  
   The program uses a menu-driven interface to guide users through creating and managing circuits.
-  - **Supported ICs**:  
+  <br><br> **Supported ICs**:  
   - AND Gate IC  
   - OR Gate IC  
   - NOT Gate IC  
@@ -43,16 +46,22 @@ The project consists of the following files:
   Users can:
   - Create new ICs.
   - Set pin values for ICs.
+  - Connect power to the ICs.
   - Connect ICs with wires.
   - Simulate the circuit and observe the output.
 
-- **IC Manipulation**: Set and retrieve pin values, connect ICs to each other, and use logic gates.
+- **IC Manipulation**: <br>
+  Set and retrieve pin values, connect ICs to each other, and use logic gates.
 
-- **Operator Overloading**: Use operators for pin manipulation, IC comparison, and power connections.
+- **Operator Overloading**: <br>
+  Use operators for pin manipulation, IC comparison, and power connections.
 
-- **Error Handling**: The program handles invalid inputs and operations gracefully.
+- **Error Handling**: <br>
+  The program handles invalid inputs and operations gracefully.
 
-- **Virtual Functions**: Define a `simulate()` function for IC-specific behavior and execute digital logic. Simulate individual ICs and view pin states after simulation.
+- **Virtual Functions**: <br>
+  Define a `simulate()` function for IC-specific behavior and execute digital logic. Simulate INDIVIDUAL ICs and view pin states after simulation.
+<br>
 
 ## Getting Started
 
@@ -157,12 +166,13 @@ make clean
 ````
 
 **Note:** Run the above commands in git bash, at the project's root directory.
-
+<br>
 
 ## Usage
 - **Create IC objects**: Instantiate various IC objects, e.g., `ANDGateIC`, `ORGateIC`.
 - **Connect Power**: Connect VCC and GND to the ICs to simulate power supply.
 - **Simulate**: Call the `simulate()` function on each IC to execute its digital logic.
+<br>
 
 ## Classes and Their Functions
 ### Class `IC`
@@ -179,11 +189,14 @@ The base class for all ICs.
 ### Logic Gate ICs <br>
 Each gate IC (`ANDGateIC`, `ORGateIC`, `NOTGateIC`, `NORGateIC`, `NANDGateIC`, `XORGateIC`, `XNNORGateIC`) inherits from `IC` and overrides the `simulate()` method to perform specific logic operations.
 
-### Follow the on-screen menu to:
+### **Follow the on-screen menu to:**
+   - View ICs.
    - Create ICs.
    - Set pin values.
    - Connect ICs with wires.
    - Simulate the circuit.
+   - Connect Power & Ground to the ICs
+   - View IC pin states.
 
 ### **Sample Workflow**
 - **Step 1**: Create an AND Gate IC.  
@@ -193,6 +206,7 @@ Each gate IC (`ANDGateIC`, `ORGateIC`, `NOTGateIC`, `NORGateIC`, `NANDGateIC`, `
 
 ### **Exit the Program**
 To exit the simulator, choose the `Exit` option from the menu.
+<br>
 
 ## **Code Structure**
 
@@ -221,49 +235,284 @@ DigitalLogicSimulator/
 ├── Makefile
 └── README.md
 ```
-
+<br>
 
 ## Example
 Below is a sample usage example:
 ```bash
+#include "./include/ANDGateIC.hpp"
+#include "./include/ORGateIC.hpp"
+#include "./include/NOTGateIC.hpp"
+#include "./include/XORGateIC.hpp"
+#include "./include/NANDGateIC.hpp"
+#include "./include/NORGateIC.hpp"
+#include "./include/XNORGateIC.hpp"
 #include "./include/Wire.hpp"
-#include <ANDGateIC.hpp>
-#include <ORGateIC.hpp>
+#include <string>
+#include <vector>
 
-// In main.cpp
 int main() {
-    ANDGateIC andGateIC;
-    ORGateIC orGateIC;
+    vector<IC*> icList;
+    vector<Wire*> wireList;
 
-    andGateIC += "VCC";
-    andGateIC += "GND";
+    while (true) {
+        //making a box for the menu
+        cout << "\n-----------------------------------\n";
+        cout << "\n--- Circuit Simulator Menu ---\n";
+        cout << "1. View ICs\n";
+        cout << "2. Create a new IC\n";
+        cout << "3. Set pin values\n";
+        cout << "4. Connect ICs with a wire\n";
+        cout << "5. Simulate IC\n";
+        cout << "6. Connect Power and Ground\n";
+        cout << "7. View IC pin states\n";
+        cout << "8. Exit\n";
 
-    orGateIC += "VCC";
-    orGateIC += "GND";
+        cout << "-----------------------------------\n";
 
-    // Set initial values
-    andGateIC[1] = 1;
-    andGateIC[2] = 1;
+        //taking the input from the user
+        cout << "Enter your choice: ";
+        int choice;
+        cin >> choice;
 
-    // Connect ICs using wires
-    Wire wire1(&andGateIC, 3, &orGateIC, 1); // Connect AND output to OR input
-    wire1.connect();
+        if (choice == 1) {
+            if (icList.empty()) {
+                cout << "No ICs available.\n";
+                continue;
+            }
 
-    orGateIC[2] = 0;
+            cout << "ICs available: \n";
+            for (size_t i = 0; i < icList.size(); ++i) {
+                cout << i + 1 << ". " << icList[i]->getName() << endl;
+            }
+        }
+        else if (choice == 2) {
+            cout << "Select IC type:\n";
+            cout << "1. AND Gate\n2. OR Gate\n3. NOT Gate\n4. XOR Gate\n5. NAND Gate\n6. NOR Gate\n7. XNOR Gate\n";
+            int icType;
+            cin >> icType;
 
-    andGateIC.simulate();
-    orGateIC.simulate();
+            IC* newIC = nullptr;
+            switch (icType) {
+                case 1: newIC = new ANDGateIC(); break;
+                case 2: newIC = new ORGateIC(); break;
+                case 3: newIC = new NOTGateIC(); break;
+                case 4: newIC = new XORGateIC(); break;
+                case 5: newIC = new NANDGateIC(); break;
+                case 6: newIC = new NORGateIC(); break;
+                case 7: newIC = new XNORGateIC(); break;
+                default: cout << "Invalid choice.\n"; continue;
+            }
 
-    // Results
-    cout << "AND IC Output (Pin 3): " << andGateIC[3] << endl;
-    cout << "OR IC Output (Pin 3): " << orGateIC[3] << endl;
+            string powerChoice;
+            cout << "Connect power to this IC? (y/n): ";
+            cin >> powerChoice;
 
-    // Cleanup
-    wire1.disconnect();
+            if (powerChoice == "y" || powerChoice == "Y") {
+                newIC->connectVCC();
+                newIC->connectGround();
+                cout << "Power connected to IC.\n";
+            }
+
+            icList.push_back(newIC);
+            cout << "IC created and added to the circuit.\n";
+        }
+
+        else if (choice == 3) {
+            if (icList.empty()) {
+                cout << "No ICs available. Create an IC first.\n";
+                continue;
+            }
+
+            size_t icIndex;
+            int pin, value;
+            cout<< "ICs available: \n";
+            for (size_t i = 0; i < icList.size(); ++i) {
+                cout << i + 1 << ". " << icList[i]->getName() << endl;
+            }
+            cout<< "-----------------------------------\n";
+            cout << "Select IC index (1-" << icList.size() << "): ";
+            cin >> icIndex;
+            if (icIndex < 1 || icIndex > icList.size()) {
+                cout << "Invalid IC index.\n";
+                continue;
+            }
+
+            IC* selectedIC = icList[icIndex - 1];
+            cout << "Pin values of IC " << icIndex << ":\n";
+            for (int pin = 1; pin <= selectedIC->getTotalPins(); ++pin) {
+                cout << "Pin " << pin << ": " << selectedIC->getPin(pin) << " ";
+            }
+            cout << "\n-----------------------------------\n";
+            cout << "Enter pin number to set (1-" << selectedIC->getTotalPins() << "): ";
+            cin >> pin;
+            if (pin < 1 || pin > selectedIC->getTotalPins()) {
+                cout << "Invalid pin number.\n";
+                continue;
+            }
+            else if(pin == selectedIC->vccPin || pin == selectedIC->groundPin) {
+                cout << "Cannot set VCC or GND pin value.\n";
+                continue;
+            }
+            cout << "Enter value for pin " << pin << " (0/1): ";
+            cin >> value;
+
+            try {
+                selectedIC->setPin(pin, value);
+                //changing values for pins connected by wire without accessing the private members  
+                for (Wire* wire : wireList) {
+                    if (wire->getSourceIC() == selectedIC && wire->getSourcePin() == pin) {
+                        wire->connect();
+                    }
+                }
+
+                cout << "Pin value set successfully.\n";
+            } catch (const exception& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
+
+        else if (choice == 4) {
+            if (icList.size() < 2) {
+                cout << "At least two ICs are required for connection.\n";
+                continue;
+            }
+
+            size_t srcIC, destIC;
+            int srcPin, destPin;
+            cout << "ICs available: \n";
+            for (size_t i = 0; i < icList.size(); ++i) {
+                cout << i + 1 << ". " << icList[i]->getName() << endl;
+            }
+            cout << "-----------------------------------\n";
+            cout << "Select source IC index (1-" << icList.size() << "): ";
+            cin >> srcIC;
+            cout << "Pin values of IC " << srcIC << ":\n";
+            for (int pin = 1; pin <= icList[srcIC - 1]->getTotalPins(); ++pin) {
+                cout << "Pin " << pin << ": " << icList[srcIC - 1]->getPin(pin) << " ";
+            }
+            cout << "\n-----------------------------------\n";
+            cout << "Enter source pin: ";
+            cin >> srcPin;
+            cout << "Select destination IC index (1-" << icList.size() << "): ";
+            cin >> destIC;
+            cout << "Pin values of IC " << destIC << ":\n";
+            for (int pin = 1; pin <= icList[destIC - 1]->getTotalPins(); ++pin) {
+                cout << "Pin " << pin << ": " << icList[destIC - 1]->getPin(pin) << " ";
+            }
+            cout << "\n-----------------------------------\n";
+            cout << "Enter destination pin: ";
+            cin >> destPin;
+
+            if (srcIC < 1 || srcIC > icList.size() || destIC < 1 || destIC > icList.size()) {
+                cout << "Invalid IC index.\n";
+                continue;
+            }
+
+            try {
+                Wire* newWire = new Wire(icList[srcIC - 1], srcPin, icList[destIC - 1], destPin);
+                newWire->connect();
+                wireList.push_back(newWire);
+                cout << "Wire connected successfully.\n";
+            } catch (const exception& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
+
+        else if (choice == 5) {
+            if (icList.empty()) {
+                cout << "No ICs available to simulate.\n";
+                continue;
+            }
+
+            size_t icIndex;
+            cout << "ICs available: \n";
+            for (size_t i = 0; i < icList.size(); ++i) {
+                cout << i + 1 << ". " << icList[i]->getName() << endl;
+            }
+            cout << "-----------------------------------\n";
+            cout << "Select IC index to simulate (1-" << icList.size() << "): ";
+            cin >> icIndex;
+            if (icIndex < 1 || icIndex > icList.size()) {
+                cout << "Invalid IC index.\n";
+                continue;
+            }
+
+            try {
+                icList[icIndex - 1]->simulate();
+                cout << "IC simulation completed successfully.\n";
+            } catch (const exception& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
+
+        else if (choice == 6) {
+            if (icList.empty()) {
+                cout << "No ICs available to connect power and ground.\n";
+                continue;
+            }
+
+            size_t icIndex;
+            cout << "ICs available: \n";
+            for (size_t i = 0; i < icList.size(); ++i) {
+                cout << i + 1 << ". " << icList[i]->getName() << endl;
+            }
+            cout << "-----------------------------------\n";
+            cout << "Select IC index to connect power and ground (1-" << icList.size() << "): ";
+            cin >> icIndex;
+            if (icIndex < 1 || icIndex > icList.size()) {
+                cout << "Invalid IC index.\n";
+                continue;
+            }
+
+            try {
+                icList[icIndex - 1]->connectVCC();
+                icList[icIndex - 1]->connectGround();
+                cout << "Power and ground connected to IC.\n";
+            } catch (const exception& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
+
+        else if (choice == 7) {
+            if (icList.empty()) {
+                cout << "No ICs available to view.\n";
+                continue;
+            }
+
+            for (size_t i = 0; i < icList.size(); ++i) {
+                cout << "IC " << i + 1 << " (" << icList[i]->getName() << "): ";
+                for (int pin = 1; pin <= icList[i]->getTotalPins(); ++pin) {
+                    try {
+                        cout << "Pin " << pin << ": " << icList[i]->getPin(pin) << " ";
+                    } catch (const exception&) {
+                        cout << "N/A ";
+                    }
+                }
+                cout << endl;
+            }
+        }
+
+        else if (choice == 8) {
+            cout << "Exiting program...\n";
+            break;
+        }
+
+        else {
+            cout << "Invalid choice. Try again.\n";
+        }
+    }
+
+    // Clean up dynamically allocated memory
+    for (IC* ic : icList) delete ic;
+    for (Wire* wire : wireList) delete wire;
+
     return 0;
 }
 
+
 ```
+<br>
 
 ## Future Implementation
 
@@ -289,7 +538,7 @@ int main() {
 - Add additional ICs like multiplexers, demultiplexers, flip-flops, etc.
 - Support for larger IC pin configurations (e.g., 16-pin, 20-pin ICs).
 - Add support for sequential logic circuits (e.g., Flip-Flops, Counters).
-
+<br>
 
 ## License
 This project, **Digital Circuit Simulator**, was created by OOPS Team - 64, **Harith Yerragolam** and **Parth Pandey**.
