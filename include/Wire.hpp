@@ -12,7 +12,7 @@ template <typename T>
 class Wire {
     IC<T>* sourceIC;
     int sourcePin;
-    IC<T>* destinationIC;
+    IC<T>* destinationIC = nullptr;
     int destinationPin;
 
 public:

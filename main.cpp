@@ -25,9 +25,10 @@ void setPinValue(T& ic, int pin, bool value) {
     if (validateInput(pin, 1, ic.getTotalPins())) {
         ic.setPin(pin, value);
         cout << "Pin " << pin << " on IC set to " << value << endl;
-    } else {
+    } 
+    
+    else
         cout << "Invalid pin number!" << endl;
-    }
 }
 
 // Template for connecting pins between two ICs
@@ -67,6 +68,7 @@ IC<T>* createIC() {
     cout << "Select IC type:\n";
     cout << "1. AND Gate\n2. OR Gate\n3. NOT Gate\n4. XOR Gate\n5. NAND Gate\n6. NOR Gate\n7. XNOR Gate\n";
     int icType;
+    cout << "Enter IC number: "; 
     cin >> icType;
 
     IC<T>* newIC = nullptr;
@@ -111,8 +113,17 @@ void viewICs(const vector<IC<T>*>& icList) {
 // Function to cleanup resources
 template <typename T>
 void cleanup(vector<IC<T>*>& icList, vector<Wire<T>*>& wireList) {
-    for (IC<T>* ic : icList) delete ic;
-    for (Wire<T>* wire : wireList) delete wire;
+    for (Wire<T>* wire : wireList) {
+        delete wire;
+        wire = nullptr;
+    }
+    wireList.clear();
+
+    for (IC<T>* ic : icList) {
+        delete ic;
+        ic = nullptr;
+    }
+    icList.clear();
 }
 
 
@@ -165,14 +176,16 @@ int main() {
                 cout << "Enter pin number to set (1-" << selectedIC -> getTotalPins() << "): ";
                 cin >> pin;
 
-                if (pin < 1 || pin > selectedIC -> getTotalPins()) {
+                if (!validateInput<size_t>(pin, size_t(1), selectedIC -> getTotalPins())) {
                     cout << "Invalid pin number.\n";
                     continue;
                 }
+                
                 else if ((pin == selectedIC -> getVccPin()) || (pin == selectedIC -> getGroundPin())) {
                     cout << "Cannot set VCC or GND pin value.\n";
                     continue;
                 }
+
                 cout << "Enter value for pin " << pin << " (0/1): ";
                 cin >> value;
 
@@ -230,7 +243,19 @@ int main() {
                     break;
                 }
 
+                // Pin-based connection, Static Binding i.e. One time connection.
                 connectICs(*icList[srcIC - 1], srcPin, *icList[destIC - 1], destPin);
+
+                // Wire-based connection, Live update of pin values will be reflected.
+                try {
+                    Wire<int>* newWire = new Wire(icList[srcIC - 1], srcPin, icList[destIC - 1], destPin);
+                    newWire -> connect();
+                    wireList.push_back(newWire);
+                    cout << "Wire connected successfully.\n";
+                } catch (const exception& e) {
+                    cout << "Error: " << e.what() << endl;
+                }
+
                 break;
             } 
         
@@ -248,7 +273,7 @@ int main() {
 
                 cout << "Select IC index to simulate (1-" << icList.size() << "): ";
                 cin >> icIndex;
-                if (icIndex < 1 || icIndex > icList.size()) {
+                if (!validateInput(icIndex, size_t(1), icList.size())) {
                     cout << "Invalid IC index.\n";
                     break;
                 }
@@ -276,7 +301,7 @@ int main() {
 
                 cout << "Select IC index to connect power and ground (1-" << icList.size() << "): ";
                 cin >> icIndex;
-                if (icIndex < 1 || icIndex > icList.size()) {
+                if (!validateInput(icIndex, size_t(1), icList.size())) {
                     cout << "Invalid IC index.\n";
                     break;
                 }
@@ -312,8 +337,9 @@ int main() {
             }
 
             case 8: // Exit
-                cout << "Exiting program...\n";
+                cout << "Exiting program..." << endl;
                 cleanup(icList, wireList);
+                cout << "All ICs and wires have been deleted. Program terminated." << endl;
                 return 0;
 
             default:

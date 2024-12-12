@@ -31,15 +31,15 @@ class IC {
         IC(int pinCount, int vccPin, int groundPin, const string& name = "Generic IC");
         explicit IC(int pinCount) : pins(pinCount, T()), pinCount(pinCount) {}
 
-        virtual ~IC() = default;
+        virtual ~IC() {
+            cout << getName() << " IC" << " destructor called." << endl;
+        }
 
         int getTotalPins() const;
         void connectVCC();
         void connectGround();
         void setPin(int pin, T value);
         T getPin(int pin) const;
-
-        public:
 
         int getVccPin() const { return vccPin; }
 
