@@ -21,6 +21,7 @@ This project simulates a Digital Circuit System that allows users to create, sim
 The project consists of the following files:
 
 - `IC.hpp` and `IC.cpp`: Base class `IC` for all integrated circuits.
+- `Wire.hpp` and `Wire.cpp`: Class `Wire` to connect Pins of ICs.
 - `ANDGateIC.hpp` and `ANDGateIC.cpp`: Class `ANDGateIC` to simulate an AND gate IC.
 - `ORGateIC.hpp` and `ORGateIC.cpp`: Class `ORGateIC` to simulate an OR gate IC.
 - `NOTGateIC.hpp` and `NOTGateIC.cpp`: Class `NOTGateIC` to simulate a NOT gate IC.
@@ -107,25 +108,24 @@ As you have made sure that you're up-to-date, you are now ready to continue ahea
 
 
 #### **Using CMake (Optional)**
-1: Create a 'build' directory:
-```bash
-mkdir build && cd build
-```
+1. Create a 'build' directory:
+   ```bash
+   mkdir build && cd build
+   ```
+2. Generate Makefiles from CMake:
+   ```bash
+   cmake ..
+   ```
 
-2: Generate Makefiles from CMake:
-```bash
-cmake ..
-```
+3. Build using Make:
+   ```bash
+   make
+   ```
 
-3: Build using Make:
-```bash
-make
-```
-
-4: Run the program:
-```bash
-./bin/DigitalLogicSimulator
-```
+4. Run the program:
+   ```bash
+   ./bin/DigitalLogicSimulator
+   ```
 
 
 #### **Using Make (Optional)**
@@ -141,33 +141,32 @@ make
 
 **If you are using Ubuntu/Debian,**
 - Open WSL and update the package list:
-```bash
-sudo apt update
-```
+  ```bash
+  sudo apt update
+  ```
 
 - Install make:
-```bash
-sudo apt install make
-```
+  ```bash
+  sudo apt install make
+  ```
 Navigate to your project directory within WSL and run `make`. OR
-```bash
-sudo apt install build-essential
-```
+  ```bash
+  sudo apt install build-essential
+  ```
 `build-essential` includes `make` and other essential development tools like `gcc` and `g++`.
 
 **For MacOS,** <br>
 - If you have Homebrew installed, you can install `make` with:
-```bash
-brew install make
-```
+  ```bash
+  brew install make
+  ```
 
 #### Verify Installation
  - Open a new Git Bash window to refresh your PATH.
 - Run:
-
-```bash
-make --version
-```
+  ```bash
+  make --version
+  ```
 This should display the version of `make` if it’s installed correctly.
 
 #### Implementation 
@@ -177,16 +176,14 @@ make
 ```
 
 **Execute the code:**
-
 ```bash
 ./DCSimulator
 ```
 
 **Remove all the build / cache files:**
-
 ```bash
 make clean
-````
+```
 
 **Note:** Run the above commands in git bash, at the project's root directory.
 <br>
