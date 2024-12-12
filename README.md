@@ -555,6 +555,7 @@ int main() {
 
 4. **Testing Framework**
 - Automate testing for IC behaviors with predefined input-output pairs, possibly using CMake.
+- Creating Workflow including CMake integration.
 - Create detailed error logs for invalid connections or simulations.
 
 5. **Extensibility**
