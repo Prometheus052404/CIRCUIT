@@ -7,6 +7,11 @@ template <typename T>
 class ANDGateIC : public IC<T> {
     public: 
         ANDGateIC();   // Constructor
+
+        // ~ANDGateIC() {
+        //     cout << "AND Gate destructor called." << endl;
+        // }
+        
         void simulate() override; // Override simulate method
 };
 

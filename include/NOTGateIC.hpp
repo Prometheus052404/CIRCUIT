@@ -7,6 +7,11 @@ template <typename T>
 class NOTGateIC : public IC<T> {
     public:
         NOTGateIC();
+
+        // ~NOTGateIC() {
+        //     cout << "NOT Gate destructor called." << endl;
+        // }
+        
         void simulate() override;
 };
 

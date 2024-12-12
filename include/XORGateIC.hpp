@@ -7,6 +7,11 @@ template <typename T>
 class XORGateIC : public IC<T> {
     public:
         XORGateIC();
+
+        // ~XORGateIC() {
+        //     cout << "XOR Gate destructor called." << endl;
+        // }
+
         void simulate() override;
 };
 

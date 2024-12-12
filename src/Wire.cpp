@@ -8,6 +8,7 @@ Wire<T> :: Wire(IC<T>* srcIC, int srcPin, IC<T>* destIC, int destPin)
 template <typename T>
 Wire<T> :: ~Wire() {
     disconnect();
+    // cout << "Wire destructor called." << endl; // Add this to confirm the destructor is being called
 }
 
 template <typename T>
@@ -25,5 +26,9 @@ void Wire<T> :: disconnect() {
     if (destinationIC) {
         destinationIC -> setPin(destinationPin, 0); // Reset the pin
         cout << "Disconnected pin " << destinationPin << " of IC " << destinationIC -> getName() << endl;
+        destinationIC = nullptr; // To Prevent Dangling Pointer.
     }
+
+    else
+        cout << "No IC connected to disconnect." << endl;
 }
