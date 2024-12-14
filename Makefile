@@ -2,6 +2,11 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Iinclude -Wall -Wextra -pedantic
 
+# # Vcpkg Google Test paths 
+# VCPKG_ROOT = C:/DevTools/vcpkg
+# GTEST_INCLUDE = $(VCPKG_ROOT)/installed/x64-windows/include
+# GTEST_LIB = $(VCPKG_ROOT)/installed/x64-windows/lib
+
 # Project name
 TARGET = DCSimulator
 
@@ -9,6 +14,14 @@ TARGET = DCSimulator
 SRCDIR = src
 OBJDIR = obj
 TESTDIR = test
+TEST_SRC = $(TESTDIR)/test.cpp
+TEST_BIN = $(OBJDIR)/test_bin
+
+# Google Test configuration
+# GTEST_LIBS = -L$(GTEST_LIB) -lgtest -lgtest_main -pthread
+GTEST_LIBS = -lgtest -lgtest_main -pthread
+# Compiler flags with Google Test include path
+CXXFLAGS += -I$(GTEST_INCLUDE)
 
 # Source files and object files
 SOURCES = $(wildcard $(SRCDIR)/*.cpp) main.cpp
@@ -38,17 +51,22 @@ $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
 # Test step
-test: $(TARGET)
-	@echo "Running tests..."
-	@cp $(TESTDIR)/test_input.txt ./test_input.txt
-	@cp $(TESTDIR)/expected_output.txt ./expected_output.txt
-	./$(TARGET) < test_input.txt > $(TESTDIR)/test_output.txt
-	dos2unix $(TESTDIR)/test_output.txt expected_output.txt
-	diff $(TESTDIR)/test_output.txt expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
-	@rm -f test_input.txt expected_output.txt $(TESTDIR)/test_output.txt
+# test: $(TARGET)
+# 	@echo "Running tests..."
+# 	@cp $(TESTDIR)/test_input.txt ./test_input.txt
+# 	@cp $(TESTDIR)/expected_output.txt ./expected_output.txt
+# 	./$(TARGET) < test_input.txt > $(TESTDIR)/test_output.txt
+# 	dos2unix $(TESTDIR)/test_output.txt expected_output.txt
+# 	diff $(TESTDIR)/test_output.txt expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
+# 	@rm -f test_input.txt expected_output.txt $(TESTDIR)/test_output.txt
 
+# Unit test target
+test: $(OBJECTS) $(TEST_SRC) | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -o $(TEST_BIN) $(TEST_SRC) $(OBJECTS) $(GTEST_LIBS)
+	./$(TEST_BIN)
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
-	rm -rf $(OBJDIR) $(TARGET) test_output.txt
+	rm -rf $(OBJDIR) $(TARGET) $(TEST_BIN)
+# ADD "test_output.txt" to the list of files to be removed if using the standard (commented out) test target.
 
 rebuild: clean all

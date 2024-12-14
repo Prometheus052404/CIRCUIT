@@ -8,17 +8,23 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-   # Step 1: Checkout the code
+    # Step 1: Checkout the code
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    # Step 2: Install dependencies
+    # Step 2: Install dependencies including Google Test
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y make g++ cmake dos2unix
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          make \
+          g++ \
+          cmake \
+          dos2unix \
+          libgtest-dev
 
     # Step 3: Build the project using Makefile
     - name: Build with Make
@@ -27,7 +33,7 @@ jobs:
         make test
         make clean
       
-    # Step 4: Build the project using CMake
+    # Step 4: Build the project using CMake (optional)
     - name: Build with CMake
       run: |
         mkdir build
