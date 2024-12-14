@@ -71,7 +71,7 @@ test: $(OBJDIR)/test_bin
 
 # Build test binary
 $(OBJDIR)/test_bin: $(TEST_SOURCES) | $(OBJDIR)
-    $(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(GTEST_LIBS)
+	$(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(GTEST_LIBS)
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
