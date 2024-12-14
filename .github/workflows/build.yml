@@ -26,14 +26,22 @@ jobs:
           dos2unix \
           libgtest-dev
 
-    # Step 3: Build the project using Makefile
+    # Step 3: Build Google Test
+    - name: Build Google Test
+      run: |
+        cd /usr/src/gtest
+        sudo cmake .
+        sudo make
+        sudo cp *.a /usr/lib
+
+    # Step 4: Build the project using Makefile
     - name: Build with Make
       run: |
         make
         make test
         make clean
       
-    # Step 4: Build the project using CMake (optional)
+    # Step 5: Build the project using CMake (optional)
     - name: Build with CMake
       run: |
         mkdir build
