@@ -65,6 +65,10 @@ $(OBJDIR):
 # 	diff $(TESTDIR)/test_output.txt expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
 # 	@rm -f test_input.txt expected_output.txt $(TESTDIR)/test_output.txt
 
+# Compile test.cpp in the root directory
+$(OBJDIR)/test.o: test/test.cpp
+    $(CXX) $(CXXFLAGS) -Iinclude -c $< -o $@
+
 # Unit test target (exclude main.cpp for the test build)
 test: $(OBJDIR)/test_bin
 	./$(OBJDIR)/test_bin
