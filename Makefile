@@ -21,7 +21,7 @@ TEST_BIN = $(OBJDIR)/test_bin
 # GTEST_LIBS = -L$(GTEST_LIB) -lgtest -lgtest_main -pthread
 GTEST_LIBS = -lgtest -lgtest_main -pthread
 # Compiler flags with Google Test include path
-CXXFLAGS += -I$(GTEST_INCLUDE)
+# CXXFLAGS += -I$(GTEST_INCLUDE)
 
 # Source files and object files
 SOURCES = $(wildcard $(SRCDIR)/*.cpp) main.cpp
