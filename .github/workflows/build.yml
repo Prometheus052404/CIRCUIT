@@ -32,7 +32,7 @@ jobs:
         cd /usr/src/gtest
         sudo cmake .
         sudo make
-        sudo cp *.a /usr/lib
+        sudo cp lib/libgtest*.a /usr/lib
 
     # Step 4: Build the project using Makefile
     - name: Build with Make
