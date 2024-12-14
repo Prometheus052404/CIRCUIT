@@ -15,7 +15,7 @@ OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
 
 # Default target
-all: $(TARGET) -j$(nproc)
+all: $(TARGET)
 
 # Link the executable
 $(TARGET): $(OBJECTS)
