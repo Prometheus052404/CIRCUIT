@@ -203,7 +203,6 @@ void cleanup(vector<IC<T>*>& icList, vector<Wire<T>*>& wireList) {
 int getChoice() {
     int choice;
     while (true) {
-        cout << "Enter your choice: ";
         cin >> choice;
         if (cin.fail()) {
             // Input is not a number, clear the error and ignore the invalid input

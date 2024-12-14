@@ -31,7 +31,6 @@ OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
 # Exclude main.cpp from the test build process
 TEST_SOURCES = $(wildcard $(SRCDIR)/*.cpp)
-TEST_SOURCES := $(filter-out $(SRCDIR)/main.cpp, $(TEST_SOURCES))
 
 # Phony targets
 .PHONY: all clean test rebuild
@@ -70,8 +69,8 @@ test: $(OBJDIR)/test_bin
 	./$(OBJDIR)/test_bin
 
 # Build test binary
-$(OBJDIR)/test_bin: $(TEST_SOURCES) $(OBJECTS) | $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(OBJECTS) $(GTEST_LIBS)
+$(OBJDIR)/test_bin: $(TEST_SOURCES) | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(GTEST_LIBS)
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
