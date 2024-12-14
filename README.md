@@ -22,6 +22,7 @@ The project consists of the following files:
 
 - `IC.hpp` and `IC.cpp`: Base class `IC` for all integrated circuits.
 - `Wire.hpp` and `Wire.cpp`: Class `Wire` to connect Pins of ICs.
+- `CustomExceptions.hpp`: Classes for Custom Error Messages for better understanding.
 - `ANDGateIC.hpp` and `ANDGateIC.cpp`: Class `ANDGateIC` to simulate an AND gate IC.
 - `ORGateIC.hpp` and `ORGateIC.cpp`: Class `ORGateIC` to simulate an OR gate IC.
 - `NOTGateIC.hpp` and `NOTGateIC.cpp`: Class `NOTGateIC` to simulate a NOT gate IC.
@@ -31,37 +32,37 @@ The project consists of the following files:
 - `NORGateIC.hpp` and `XNORGateIC.cpp`: Class `XNORGateIC` to simulate a XNOR gate IC.
 <br>
 
-## **Features**
-- **Interactive User Input**:  
-  The program uses a menu-driven interface to guide users through creating and managing circuits.
-  <br><br> **Supported ICs**:  
-  - AND Gate IC  
-  - OR Gate IC  
-  - NOT Gate IC  
-  - XOR Gate IC  
-  - NAND Gate IC  
-  - NOR Gate IC  
-  - XNOR Gate IC
-
-- **Dynamic Circuit Design**:  
-  Users can:
-  - Create new ICs.
-  - Set pin values for ICs.
-  - Connect power to the ICs.
-  - Connect ICs with wires.
-  - Simulate the circuit and observe the output.
-
-- **IC Manipulation**: <br>
-  Set and retrieve pin values, connect ICs to each other, and use logic gates.
-
-- **Operator Overloading**: <br>
-  Use operators for pin manipulation, IC comparison, and power connections.
-
-- **Error Handling**: <br>
-  The program handles invalid inputs and operations gracefully.
-
-- **Virtual Functions**: <br>
-  Define a `simulate()` function for IC-specific behavior and execute digital logic. Simulate INDIVIDUAL ICs and view pin states after simulation.
+  ## **Features**
+  - **Interactive User Input**:  
+    The program uses a menu-driven interface to guide users through creating and managing circuits.
+    <br><br> **Supported ICs**:  
+    - AND Gate IC  
+    - OR Gate IC  
+    - NOT Gate IC  
+    - XOR Gate IC  
+    - NAND Gate IC  
+    - NOR Gate IC  
+    - XNOR Gate IC
+  
+  - **Dynamic Circuit Design**:  
+    Users can:
+    - Create new ICs.
+    - Set pin values for ICs.
+    - Connect power to the ICs.
+    - Connect ICs with wires.
+    - Simulate the circuit and observe the output.
+  
+  - **IC Manipulation**: <br>
+    Set and retrieve pin values, connect ICs to each other, and use logic gates.
+  
+  - **Operator Overloading**: <br>
+    Use operators for pin manipulation, IC comparison, and power connections.
+  
+  - **Error Handling**: <br>
+    The program handles invalid inputs and operations gracefully.
+  
+  - **Virtual Functions**: <br>
+    Define a `simulate()` function for IC-specific behavior and execute digital logic. Simulate INDIVIDUAL ICs and view pin states after simulation.
 <br>
 
 ## Getting Started
@@ -195,15 +196,33 @@ make clean
 <br>
 
 ## Classes and Their Functions
-### Class `IC`
-The base class for all ICs.
+### **Class `IC`**
+The template-based Base class for all simulating all ICs. 
 
-- **Constructor**: Initializes pins, VCC, and GND.
-- **connectVCC()**: Connects the IC to the power rail.
-- **connectGround()**: Connects the IC to the ground rail.
-- **setPin(int pin, int value)**: Sets a pin's value.
-- **getPin(int pin)**: Gets a pin's value.
-- **simulate()**: Pure virtual function for IC-specific logic.
+- **Constructor**: Initializes the IC with pins, VCC, GND, and a name.  
+- **getTotalPins()**: Returns the total number of pins.  
+- **connectVCC()**: Connects the IC to the power (VCC) rail.  
+- **connectGround()**: Connects the IC to the ground (GND) rail.  
+- **setPin(int pin, T value)**: Sets a specific pin's value.  
+- **getPin(int pin)**: Retrieves a specific pin's value.  
+- **operator[](int pinNumber)**: Accesses pin values using the `[]` operator (0-indexed).  
+- **operator()(int pinOut, IC<T>& otherIC, int pinIn)**: Connects an output pin to another IC's input pin.  
+- **operator+=(const string& connection)**: Connects the IC to VCC or GND.  
+- **operator==(const IC<T>& other)**: Compares two ICs for equality.  
+- **operator!()**: Resets all pin values to `0`.  
+
+### **Class `Wire`**
+
+The `Wire` class connects IC pins to simulate signal flow between them.
+
+- **Constructor**: Initializes the wire with the source IC and pin, as well as the destination IC and pin.
+- **Destructor**: Safely disconnects the wire, resetting the connection to prevent dangling pointers.
+- **connect()**: Connects the source IC's pin to the destination IC's pin and transfers the signal.
+- **disconnect()**: Disconnects the wire, resets the destination IC's pin value, and prevents dangling pointers.
+- **getSourceIC()**: Returns a pointer to the source IC.
+- **getDestinationIC()**: Returns a pointer to the destination IC.
+- **getSourcePin()**: Returns the source pin number.
+
 
 
 ### Logic Gate ICs <br>
@@ -213,7 +232,7 @@ Each gate IC (`ANDGateIC`, `ORGateIC`, `NOTGateIC`, `NORGateIC`, `NANDGateIC`, `
    - View ICs.
    - Create ICs.
    - Set pin values.
-   - Connect ICs with wires.
+   - Connect ICs with wires using the **Wire** class.  
    - Simulate the circuit.
    - Connect Power & Ground to the ICs
    - View IC pin states.
@@ -234,6 +253,7 @@ To exit the simulator, choose the `Exit` option from the menu.
 DigitalLogicSimulator/
 ├── include/
 │   ├── IC.hpp
+│   ├── CustomExceptions.hpp
 │   ├── ANDGateIC.hpp
 │   ├── ORGateIC.hpp
 │   ├── NOTGateIC.hpp
@@ -251,7 +271,13 @@ DigitalLogicSimulator/
 │   ├── NORGateIC.cpp
 │   ├── XNORGateIC.cpp
 │   └── Wire.cpp
+├── test/
+│   ├── test_input.txt
+│   └── expected_output.txt
+├── .github/workflows
+│   └── build.yml
 ├── main.cpp
+├── CMakeLists.txt
 ├── Makefile
 └── README.md
 ```
