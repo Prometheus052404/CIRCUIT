@@ -542,23 +542,22 @@ int main() {
 - Implement a `Breadboard` class to simulate multiple wires and IC connections.
 - Allow dynamic connections to pins on the breadboard and ICs.
 
-2. **Advanced Signal Propagation**
-- Simulate signal propagation delays in wires.
-- Introduce realistic electrical behavior (e.g., resistance, capacitance).
-
-3. **Circuit Visualization**
-- Create a GUI/CLI-based circuit visualization tool for better interaction.
-- Use frameworks like Qt for GUI or text-based interfaces.
-
-4. **Testing Framework**
-- Automate testing for IC behaviors with predefined input-output pairs, possibly using CMake.
-- Creating Workflow including CMake integration.
+2. **Testing Framework**
 - Create detailed error logs for invalid connections or simulations.
 
-5. **Extensibility**
+3. **Extensibility**
 - Add additional ICs like multiplexers, demultiplexers, flip-flops, etc.
 - Support for larger IC pin configurations (e.g., 16-pin, 20-pin ICs).
 - Add support for sequential logic circuits (e.g., Flip-Flops, Counters).
+
+4. **Advanced Signal Propagation**
+- Simulate signal propagation delays in wires.
+- Introduce realistic electrical behavior (e.g., resistance, capacitance).
+
+5. **Circuit Visualization**
+- Create a GUI/CLI-based circuit visualization tool for better interaction.
+- Use frameworks like Qt for GUI or text-based interfaces.
+
 <br>
 
 ## License

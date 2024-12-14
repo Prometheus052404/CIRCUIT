@@ -42,9 +42,10 @@ test: $(TARGET)
 	@echo "Running tests..."
 	@cp $(TESTDIR)/test_input.txt ./test_input.txt
 	@cp $(TESTDIR)/expected_output.txt ./expected_output.txt
-	./$(TARGET) < test_input.txt > test_output.txt
-	diff test_output.txt expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
-	@rm -f test_input.txt expected_output.txt test_output.txt
+	./$(TARGET) < test_input.txt > $(TESTDIR)/test_output.txt
+	dos2unix $(TESTDIR)/test_output.txt expected_output.txt
+	diff $(TESTDIR)/test_output.txt expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
+	@rm -f test_input.txt expected_output.txt $(TESTDIR)/test_output.txt
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
