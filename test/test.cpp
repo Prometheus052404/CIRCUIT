@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "../include/IC.hpp"
-#include "../include/Wire.hpp"
+#include "../src/IC.cpp"
+#include "../src/Wire.cpp"
 
 // Concrete IC class for testing that implements simulate()
 template <typename T>
