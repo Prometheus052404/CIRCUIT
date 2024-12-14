@@ -14,6 +14,7 @@ TARGET = DCSimulator
 SRCDIR = src
 OBJDIR = obj
 TESTDIR = test
+
 TEST_SRC = $(TESTDIR)/test.cpp
 TEST_BIN = $(OBJDIR)/test_bin
 
@@ -25,8 +26,12 @@ GTEST_LIBS = -lgtest -lgtest_main -pthread
 
 # Source files and object files
 SOURCES = $(wildcard $(SRCDIR)/*.cpp) main.cpp
+
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
+# Exclude main.cpp from the test build process
+TEST_SOURCES = $(wildcard $(SRCDIR)/*.cpp)
+TEST_SOURCES := $(filter-out $(SRCDIR)/main.cpp, $(TEST_SOURCES))
 
 # Phony targets
 .PHONY: all clean test rebuild
@@ -60,13 +65,17 @@ $(OBJDIR):
 # 	diff $(TESTDIR)/test_output.txt expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
 # 	@rm -f test_input.txt expected_output.txt $(TESTDIR)/test_output.txt
 
-# Unit test target
-test: $(OBJECTS) $(TEST_SRC) | $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -o $(TEST_BIN) $(TEST_SRC) $(OBJECTS) $(GTEST_LIBS)
-	./$(TEST_BIN)
+# Unit test target (exclude main.cpp for the test build)
+test: $(OBJDIR)/test_bin
+	./$(OBJDIR)/test_bin
+
+# Build test binary
+$(OBJDIR)/test_bin: $(TEST_SOURCES) $(OBJECTS) | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(OBJECTS) $(GTEST_LIBS)
+
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
-	rm -rf $(OBJDIR) $(TARGET) $(TEST_BIN)
+	rm -rf $(OBJDIR) $(TARGET) $(OBJDIR)/test_bin
 # ADD "test_output.txt" to the list of files to be removed if using the standard (commented out) test target.
 
 rebuild: clean all
