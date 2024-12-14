@@ -32,8 +32,10 @@ SOURCES = $(wildcard $(SRCDIR)/*.cpp) main.cpp
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
 # Exclude main.cpp from the test build process
-TEST_SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 
+TEST_SOURCES = $(wildcard $(SRCDIR)/*.cpp)
+TEST_OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST_SOURCES))
+TEST_OBJECTS += $(OBJDIR)/test.o
 # Phony targets
 .PHONY: all clean test rebuild
 
@@ -52,6 +54,10 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 $(OBJDIR)/main.o: main.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Compile test.cpp in the test directory
+$(OBJDIR)/test.o: $(TESTDIR)/test.cpp | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 # Create obj directory if it doesn't exist
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
@@ -66,20 +72,13 @@ $(OBJDIR):
 # 	diff $(TESTDIR)/test_output.txt expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
 # 	@rm -f test_input.txt expected_output.txt $(TESTDIR)/test_output.txt
 
-# Compile test.cpp in the root directory
-$(OBJDIR)/test.o: test/test.cpp
-	$(CXX) $(CXXFLAGS) -Iinclude -c $< -o $@
-
-$(OBJDIR)/gtest_main.o: test/gtest_main.cpp
-	$(CXX) $(CXXFLAGS) -I/usr/src/googletest/googletest/include -c $< -o $@
-
 # Unit test target (exclude main.cpp for the test build)
 test: $(OBJDIR)/test_bin
 	./$(OBJDIR)/test_bin
 
 # Build test binary
-$(OBJDIR)/test_bin: $(TEST_SOURCES) | $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(GTEST_LIBS)
+$(OBJDIR)/test_bin: $(TEST_OBJECTS) | $(OBJDIR)
+	$(CXX) $(TEST_OBJECTS) -o $(OBJDIR)/test_bin $(LDFLAGS)
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
