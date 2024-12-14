@@ -1,12 +1,48 @@
-Select IC (1-5): IC 5 selected.
-Enter pin number to set (1-10): Pin 1 selected.
-Set pin 1 to LOW (0).
-Select IC (1-5): IC 3 selected.
-Enter pin number to set (1-10): Pin 4 selected.
-Set pin 4 to HIGH (1).
-Enter source IC (1-5) for connection: Source IC 2 selected.
-Enter destination IC (1-5) for connection: Destination IC 3 selected.
-Enter source pin (1-10): Source pin 1 selected.
-Enter destination pin (1-10): Destination pin 5 selected.
-Connecting pin 1 of IC 2 to pin 5 of IC 3.
-Exiting simulation. Goodbye!
+--- Circuit Simulator Menu ---
+1. View ICs
+2. Create a new IC
+3. Set pin values
+4. Connect ICs with a wire
+5. Simulate IC
+6. Connect Power and Ground
+7. View IC pin states
+8. Exit
+-----------------------------------
+Select IC type:
+1. AND Gate
+2. OR Gate
+3. NOT Gate
+4. XOR Gate
+5. NAND Gate
+6. NOR Gate
+7. XNOR Gate
+Connect power to this IC? (y/n): IC created and added to the circuit.
+--- Circuit Simulator Menu ---
+Select IC type:
+1. AND Gate
+2. OR Gate
+3. NOT Gate
+4. XOR Gate
+5. NAND Gate
+6. NOR Gate
+7. XNOR Gate
+Connect power to this IC? (y/n): IC created and added to the circuit.
+Select IC index (1-2): Pin values of IC 1:
+Pin 1: 0 Pin 2: 0 Pin 3: 0 
+-----------------------------------
+Enter pin number to set (1-3): Enter value for pin 1 (0/1): Pin value set successfully.
+Select IC index (1-2): Pin values of IC 1:
+Pin 1: 1 Pin 2: 0 Pin 3: 0 
+-----------------------------------
+Enter pin number to set (1-3): Enter value for pin 2 (0/1): Pin value set successfully.
+Select IC index (1-2): IC simulation completed successfully.
+Select source IC index (1-2): Pin values of IC 1:
+Pin 1: 1 Pin 2: 1 Pin 3: 1 
+-----------------------------------
+Enter source pin: Select destination IC index (1-2): Pin values of IC 2:
+Pin 1: 0 Pin 2: 0 Pin 3: 0 
+-----------------------------------
+Enter destination pin: Wire connected successfully.
+Select IC index (1-2): IC simulation completed successfully.
+Exiting program...
+All ICs and wires have been deleted. Program terminated.

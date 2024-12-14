@@ -11,7 +11,7 @@ https://github.com/Prometheus052404/CIRCUIT
 #include "./src/NORGateIC.cpp"
 #include "./src/XNORGateIC.cpp"
 #include "./src/Wire.cpp"
-#include "./include/Exceptions.hpp"
+#include "./include/CustomExceptions.hpp"
 #include <memory>
 #include <limits>
 
@@ -41,13 +41,20 @@ bool validateInput(T input, T minValue, T maxValue) {
  */
 template <typename T>
 void setPinValue(T& ic, int pin, bool value) {
-    if (validateInput(pin, 1, ic.getTotalPins())) {
-        ic.setPin(pin, value);
-        cout << "Pin " << pin << " on IC set to " << value << endl;
-    } 
-    
-    else
-        cout << "Invalid pin number!" << endl;
+    if (!validateInput(pin, 1, ic.getTotalPins())) {
+        cerr << "Error: Invalid pin number " << pin
+             << ". Valid range is 1 to " << ic.getTotalPins() << ".\n";
+        return;
+    }
+
+    if (pin == ic.getVccPin() || pin == ic.getGroundPin()) {
+        cerr << "Error: Cannot manually set values for VCC (pin "
+             << ic.getVccPin() << ") or GND (pin " << ic.getGroundPin() << ").\n";
+        return;
+    }
+
+    ic.setPin(pin, value);
+    cout << "Pin " << pin << " on IC set to value " << value << ".\n";
 }
 
 /**
@@ -61,16 +68,27 @@ void setPinValue(T& ic, int pin, bool value) {
  */
 template <typename T1, typename T2>
 void connectICs(T1& srcIC, int srcPin, T2& destIC, int destPin) {
-    if (validateInput(srcPin, 1, srcIC.getTotalPins()) &&
-        validateInput(destPin, 1, destIC.getTotalPins())) {
-        destIC.setPin(destPin, srcIC.getPin(srcPin));
-        cout << "Connected IC " << srcIC.getName() << " pin " << srcPin
-             << " to IC " << destIC.getName() << " pin " << destPin << endl;
-    } 
-    
-    else {
-        cout << "Invalid pin connection!" << endl;
+    if (!validateInput(srcPin, 1, srcIC.getTotalPins())) {
+        cerr << "Error: Source pin " << srcPin
+             << " is invalid. Valid range is 1 to " << srcIC.getTotalPins() << ".\n";
+        return;
     }
+    if (!validateInput(destPin, 1, destIC.getTotalPins())) {
+        cerr << "Error: Destination pin " << destPin
+             << " is invalid. Valid range is 1 to " << destIC.getTotalPins() << ".\n";
+        return;
+    }
+
+    if (srcPin == srcIC.getVccPin() || srcPin == srcIC.getGroundPin() ||
+        destPin == destIC.getVccPin() || destPin == destIC.getGroundPin()) {
+        cerr << "Error: Cannot connect VCC or GND pins directly. Please choose valid data pins.\n";
+        return;
+    }
+
+    // Proceed with connection
+    destIC.setPin(destPin, srcIC.getPin(srcPin));
+    cout << "Connected IC " << srcIC.getName() << " pin " << srcPin
+         << " to IC " << destIC.getName() << " pin " << destPin << ".\n";
 }
 
 /**
@@ -178,6 +196,8 @@ void cleanup(vector<IC<T>*>& icList, vector<Wire<T>*>& wireList) {
         ic = nullptr;
     }
     icList.clear();
+
+    cout << "All resources cleaned up successfully.\n";
 }
 
 /**

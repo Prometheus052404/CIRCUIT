@@ -8,11 +8,15 @@ TARGET = DCSimulator
 # Directories
 SRCDIR = src
 OBJDIR = obj
+TESTDIR = test
 
 # Source files and object files
 SOURCES = $(wildcard $(SRCDIR)/*.cpp) main.cpp
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
+
+# Phony targets
+.PHONY: all clean test rebuild
 
 # Default target
 all: $(TARGET)
@@ -33,23 +37,17 @@ $(OBJDIR)/main.o: main.cpp | $(OBJDIR)
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-# Rule for creating .o files from .cpp files
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Test step
+test: $(TARGET)
+	@echo "Running tests..."
+	@cp $(TESTDIR)/test_input.txt ./test_input.txt
+	@cp $(TESTDIR)/expected_output.txt ./expected_output.txt
+	./$(TARGET) < test_input.txt > test_output.txt
+	diff test_output.txt expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
+	@rm -f test_input.txt expected_output.txt test_output.txt
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
-	rm -rf $(OBJDIR) $(TARGET)
+	rm -rf $(OBJDIR) $(TARGET) test_output.txt
 
 rebuild: clean all
-
-# Test step
-test:
-	@echo "Running tests..."
-	./$(TARGET) < tests/test_input.txt > tests/test_output.txt
-	diff -q tests/test_output.txt tests/expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
-
-# Phony targets
-.PHONY: clean rebuild all
-
-
