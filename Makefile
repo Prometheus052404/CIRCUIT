@@ -67,7 +67,7 @@ $(OBJDIR):
 
 # Compile test.cpp in the root directory
 $(OBJDIR)/test.o: test/test.cpp
-    $(CXX) $(CXXFLAGS) -Iinclude -c $< -o $@
+	$(CXX) $(CXXFLAGS) -Iinclude -c $< -o $@
 
 # Unit test target (exclude main.cpp for the test build)
 test: $(OBJDIR)/test_bin

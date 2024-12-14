@@ -52,3 +52,9 @@ jobs:
         make clean
 
     # For extensive debugging, replace 'Release' with 'Debug' in 'cmake ..' command of Step 4.
+
+    # Step 6: Debug Make
+    - name: Debug Make
+      run: |
+        make clean
+        make VERBOSE=1
