@@ -69,13 +69,20 @@ $(OBJDIR):
 $(OBJDIR)/test.o: test/test.cpp
 	$(CXX) $(CXXFLAGS) -Iinclude -c $< -o $@
 
+$(OBJDIR)/gtest_main.o: test/gtest_main.cpp
+	$(CXX) $(CXXFLAGS) -I/usr/src/googletest/googletest/include -c $< -o $@
+
 # Unit test target (exclude main.cpp for the test build)
 test: $(OBJDIR)/test_bin
 	./$(OBJDIR)/test_bin
 
 # Build test binary
-$(OBJDIR)/test_bin: $(TEST_SOURCES) | $(OBJDIR)
+$(OBJDIR)/test_bin: obj/gtest_main.o obj/ANDGateIC.o obj/IC.o obj/NANDGateIC.o obj/NORGateIC.o obj/NOTGateIC.o obj/ORGateIC.o obj/Wire.o obj/XNORGateIC.o obj/XORGateIC.o obj/test.o
 	$(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(GTEST_LIBS)
+
+# $(OBJDIR)/test_bin: $(TEST_SOURCES) | $(OBJDIR)
+#   $(CXX) $(CXXFLAGS) -o $@ $^ -pthread
+# 	$(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(GTEST_LIBS)
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:

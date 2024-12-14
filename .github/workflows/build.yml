@@ -38,10 +38,11 @@ jobs:
     - name: Build with Make
       run: |
         make
+        cp /usr/src/googletest/googletest/src/gtest_main.cc test/gtest_main.cpp
         make test
         make clean
       
-    # Step 5: Build the project using CMake (optional)
+    # Step 5: Build the project using CMake
     - name: Build with CMake
       run: |
         mkdir build
