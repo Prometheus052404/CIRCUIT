@@ -20,7 +20,8 @@ TEST_BIN = $(OBJDIR)/test_bin
 
 # Google Test configuration
 # GTEST_LIBS = -L$(GTEST_LIB) -lgtest -lgtest_main -pthread
-GTEST_LIBS = -lgtest -lgtest_main -pthread
+GTEST_LIBS = -L/usr/lib -lgtest -lgtest_main -pthread
+
 # Compiler flags with Google Test include path
 # CXXFLAGS += -I$(GTEST_INCLUDE)
 
@@ -70,7 +71,7 @@ test: $(OBJDIR)/test_bin
 
 # Build test binary
 $(OBJDIR)/test_bin: $(TEST_SOURCES) | $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(GTEST_LIBS)
+    $(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(GTEST_LIBS)
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
