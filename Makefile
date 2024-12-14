@@ -15,7 +15,7 @@ OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
 
 # Default target
-all: $(TARGET)
+all: $(TARGET) -j$(nproc)
 
 # Link the executable
 $(TARGET): $(OBJECTS)
@@ -41,6 +41,8 @@ $(OBJDIR):
 clean:
 	rm -rf $(OBJDIR) $(TARGET)
 
+rebuild: clean all
+
 # Test step
 test:
 	@echo "Running tests..."
@@ -48,5 +50,6 @@ test:
 	diff -q tests/test_output.txt tests/expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
 
 # Phony targets
-.PHONY: all clean
+.PHONY: clean rebuild all
+
 
