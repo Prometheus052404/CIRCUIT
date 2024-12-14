@@ -1,24 +1,14 @@
-2        # Create a new IC
-1        # Select AND Gate
-y        # Connect power
-2        # Create another IC
-2        # Select OR Gate
-y        # Connect power
-3        # Set pin values
-1        # Select first IC (AND Gate)
-1        # Select pin 1
-1        # Set to HIGH
-3        # Set pin values again
-1        # Select first IC (AND Gate)
-2        # Select pin 2
-1        # Set to HIGH
-5        # Simulate IC
-1        # Select first IC (AND Gate)
-4        # Connect ICs
-1        # Source IC (AND Gate)
-3        # Source pin (output)
-2        # Destination IC (OR Gate)
-1        # Destination pin
-5        # Simulate IC
-2        # Select second IC (OR Gate)
-8        # Exit
+2
+1
+y
+3
+1
+1
+1
+3
+1
+2
+1
+5
+1
+8

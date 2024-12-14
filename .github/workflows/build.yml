@@ -32,7 +32,9 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake ..
+        cmake -DCMAKE_BUILD_TYPE=Release ..
         make
         ctest --output-on-failure
         make clean
+
+    # For extensive debugging, replace 'Release' with 'Debug' in 'cmake ..' command of Step 4.
