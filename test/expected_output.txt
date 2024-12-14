@@ -1,12 +1,92 @@
-Select IC (1-5): IC 5 selected.
-Enter pin number to set (1-10): Pin 1 selected.
-Set pin 1 to LOW (0).
-Select IC (1-5): IC 3 selected.
-Enter pin number to set (1-10): Pin 4 selected.
-Set pin 4 to HIGH (1).
-Enter source IC (1-5) for connection: Source IC 2 selected.
-Enter destination IC (1-5) for connection: Destination IC 3 selected.
-Enter source pin (1-10): Source pin 1 selected.
-Enter destination pin (1-10): Destination pin 5 selected.
-Connecting pin 1 of IC 2 to pin 5 of IC 3.
-Exiting simulation. Goodbye!
+
+-----------------------------------
+--- Circuit Simulator Menu ---
+1. View ICs
+2. Create a new IC
+3. Set pin values
+4. Connect ICs with a wire
+5. Simulate IC
+6. Connect Power and Ground
+7. View IC pin states
+8. Exit
+-----------------------------------
+Enter your choice: Enter your choice: Select IC type:
+1. AND Gate
+2. OR Gate
+3. NOT Gate
+4. XOR Gate
+5. NAND Gate
+6. NOR Gate
+7. XNOR Gate
+Enter IC number: AND Gate IC (7408) created with 14 pins, VCC on pin 14, GND on pin 7.
+Connect power to this IC? (y/n): Power connected to IC.
+IC created and added to the circuit.
+
+-----------------------------------
+--- Circuit Simulator Menu ---
+1. View ICs
+2. Create a new IC
+3. Set pin values
+4. Connect ICs with a wire
+5. Simulate IC
+6. Connect Power and Ground
+7. View IC pin states
+8. Exit
+-----------------------------------
+Enter your choice: Enter your choice: ICs available: 
+1. AND
+Select IC index (1-1): Pin values of IC 1:
+Pin 1: 0 Pin 2: 0 Pin 3: 0 Pin 4: 0 Pin 5: 0 Pin 6: 0 Pin 7: 0 Pin 8: 0 Pin 9: 0 Pin 10: 0 Pin 11: 0 Pin 12: 0 Pin 13: 0 Pin 14: 1 
+-----------------------------------
+Enter pin number to set (1-14): Enter value for pin 1 (0/1): Pin value set successfully.
+Pin 1 on IC set to value 1.
+
+-----------------------------------
+--- Circuit Simulator Menu ---
+1. View ICs
+2. Create a new IC
+3. Set pin values
+4. Connect ICs with a wire
+5. Simulate IC
+6. Connect Power and Ground
+7. View IC pin states
+8. Exit
+-----------------------------------
+Enter your choice: Enter your choice: ICs available: 
+1. AND
+Select IC index (1-1): Pin values of IC 1:
+Pin 1: 1 Pin 2: 0 Pin 3: 0 Pin 4: 0 Pin 5: 0 Pin 6: 0 Pin 7: 0 Pin 8: 0 Pin 9: 0 Pin 10: 0 Pin 11: 0 Pin 12: 0 Pin 13: 0 Pin 14: 1 
+-----------------------------------
+Enter pin number to set (1-14): Enter value for pin 2 (0/1): Pin value set successfully.
+Pin 2 on IC set to value 1.
+
+-----------------------------------
+--- Circuit Simulator Menu ---
+1. View ICs
+2. Create a new IC
+3. Set pin values
+4. Connect ICs with a wire
+5. Simulate IC
+6. Connect Power and Ground
+7. View IC pin states
+8. Exit
+-----------------------------------
+Enter your choice: Enter your choice: ICs available: 
+1. AND
+Select IC index to simulate (1-1): IC simulation completed successfully.
+
+-----------------------------------
+--- Circuit Simulator Menu ---
+1. View ICs
+2. Create a new IC
+3. Set pin values
+4. Connect ICs with a wire
+5. Simulate IC
+6. Connect Power and Ground
+7. View IC pin states
+8. Exit
+-----------------------------------
+Enter your choice: Enter your choice: Exiting program...
+AND IC destructor called.
+All resources cleaned up successfully.
+All ICs and wires have been deleted. Program terminated.
