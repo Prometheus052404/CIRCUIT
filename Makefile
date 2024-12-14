@@ -1,6 +1,7 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Iinclude -Wall -Wextra -pedantic
+CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -Iinclude -I/usr/include/gtest
+LDFLAGS = -L/usr/lib -lgtest -lgtest_main -pthread
 
 # # Vcpkg Google Test paths 
 # VCPKG_ROOT = C:/DevTools/vcpkg
@@ -15,8 +16,8 @@ SRCDIR = src
 OBJDIR = obj
 TESTDIR = test
 
-TEST_SRC = $(TESTDIR)/test.cpp
-TEST_BIN = $(OBJDIR)/test_bin
+TEST_SRC = $(TESTDIR)/test.cpp		
+TEST_BIN = $(OBJDIR)/test.o
 
 # Google Test configuration
 # GTEST_LIBS = -L$(GTEST_LIB) -lgtest -lgtest_main -pthread
@@ -77,12 +78,8 @@ test: $(OBJDIR)/test_bin
 	./$(OBJDIR)/test_bin
 
 # Build test binary
-$(OBJDIR)/test_bin: obj/gtest_main.o obj/ANDGateIC.o obj/IC.o obj/NANDGateIC.o obj/NORGateIC.o obj/NOTGateIC.o obj/ORGateIC.o obj/Wire.o obj/XNORGateIC.o obj/XORGateIC.o obj/test.o
+$(OBJDIR)/test_bin: $(TEST_SOURCES) | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(GTEST_LIBS)
-
-# $(OBJDIR)/test_bin: $(TEST_SOURCES) | $(OBJDIR)
-#   $(CXX) $(CXXFLAGS) -o $@ $^ -pthread
-# 	$(CXX) $(CXXFLAGS) -o $(OBJDIR)/test_bin $(TEST_SOURCES) $(GTEST_LIBS)
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
