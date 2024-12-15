@@ -7,7 +7,7 @@ template <typename T>
 class TestIC : public IC<T> {
 public:
     // Use the base class constructor
-    TestIC(int pinCount, int vccPin, int groundPin, const std::string& name = "TestIC") 
+    TestIC(int pinCount, int vccPin, int groundPin, const string& name = "TestIC") 
         : IC<T>(pinCount, vccPin, groundPin, name) {}
 
     // Concrete implementation of simulate()
@@ -55,22 +55,22 @@ TEST_F(ICTest, PinSetAndGet) {
 
 // Test Invalid Pin Access
 TEST_F(ICTest, InvalidPinAccess) {
-    EXPECT_THROW(intIC.setPin(0, 10), std::out_of_range);
-    EXPECT_THROW(intIC.setPin(11, 10), std::out_of_range);
-    EXPECT_THROW(intIC.getPin(0), std::out_of_range);
-    EXPECT_THROW(intIC.getPin(11), std::out_of_range);
+    EXPECT_THROW(intIC.setPin(0, 10), out_of_range);
+    EXPECT_THROW(intIC.setPin(11, 10), out_of_range);
+    EXPECT_THROW(intIC.getPin(0), out_of_range);
+    EXPECT_THROW(intIC.getPin(11), out_of_range);
 }
 
 // Test Power and Ground Connection
 TEST_F(ICTest, PowerAndGroundConnection) {
     EXPECT_NO_THROW(intIC.connectVCC());
-    EXPECT_THROW(intIC.connectVCC(), std::runtime_error);  // Double VCC connection
+    EXPECT_THROW(intIC.connectVCC(), runtime_error);  // Double VCC connection
     
     EXPECT_NO_THROW(intIC.connectGround());
     
     // Ground connection without VCC should throw
     TestIC<int> newIC{5, 3, 4, "PowerlessIC"};
-    EXPECT_THROW(newIC.connectGround(), std::runtime_error);
+    EXPECT_THROW(newIC.connectGround(), runtime_error);
 }
 
 // Test Simulate Method
@@ -136,7 +136,7 @@ TEST_F(ICTest, InvalidWireConnection) {
     TestIC<int> sourceIC{5, 3, 4, "SourceIC"};
     
     // Wire to nullptr should throw
-    EXPECT_THROW(Wire<int>(&sourceIC, 2, nullptr, 3), std::runtime_error);
+    EXPECT_THROW(Wire<int>(&sourceIC, 2, nullptr, 3), runtime_error);
 }
 
 int main(int argc, char **argv) {
