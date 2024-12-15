@@ -7,7 +7,7 @@ NANDGateIC<T> :: NANDGateIC() : IC<T>(14, 14, 7, "NAND") {
 
 template <typename T>
 void NANDGateIC<T> :: simulate() {
-    if (this -> powerConnected && this -> groundConnected) {
+    if ((this -> powerConnected) && (this -> groundConnected)) {
         this -> pins[3 - 1] = !(this -> pins[1 - 1] & this -> pins[2 - 1]);    // Gate 1
         this -> pins[6 - 1] = !(this -> pins[4 - 1] & this -> pins[5 - 1]);    // Gate 2
         this -> pins[8 - 1] = !(this -> pins[9 - 1] & this -> pins[10 - 1]);   // Gate 3

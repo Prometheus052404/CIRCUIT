@@ -3,11 +3,6 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -Iinclude -I/usr/include/gtest
 LDFLAGS = -L/usr/lib -lgtest -lgtest_main -pthread
 
-# # Vcpkg Google Test paths 
-# VCPKG_ROOT = C:/DevTools/vcpkg
-# GTEST_INCLUDE = $(VCPKG_ROOT)/installed/x64-windows/include
-# GTEST_LIB = $(VCPKG_ROOT)/installed/x64-windows/lib
-
 # Project name
 TARGET = DCSimulator
 
@@ -20,11 +15,7 @@ TEST_SRC = $(TESTDIR)/test.cpp
 TEST_BIN = $(OBJDIR)/test.o
 
 # Google Test configuration
-# GTEST_LIBS = -L$(GTEST_LIB) -lgtest -lgtest_main -pthread
 GTEST_LIBS = -L/usr/lib -lgtest -lgtest_main -pthread
-
-# Compiler flags with Google Test include path
-# CXXFLAGS += -I$(GTEST_INCLUDE)
 
 # Source files and object files
 SOURCES = $(wildcard $(SRCDIR)/*.cpp) main.cpp
@@ -32,10 +23,10 @@ SOURCES = $(wildcard $(SRCDIR)/*.cpp) main.cpp
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
 # Exclude main.cpp from the test build process
-
 TEST_SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 TEST_OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST_SOURCES))
 TEST_OBJECTS += $(OBJDIR)/test.o
+
 # Phony targets
 .PHONY: all clean test rebuild
 

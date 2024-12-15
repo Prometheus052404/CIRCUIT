@@ -7,7 +7,7 @@ ANDGateIC<T> :: ANDGateIC() : IC<T>(14, 14, 7, "AND") {
 
 template <typename T>
 void ANDGateIC<T> :: simulate() {
-    if (this -> powerConnected && this -> groundConnected) {
+    if ((this -> powerConnected) && (this -> groundConnected)) {
         // Simulate the 4 AND gates within the 7408 IC
         this -> pins[3 - 1] = this -> pins[1 - 1] & this -> pins[2 - 1];    // Gate 1 (inputs on pins 1, 2; output on pin 3)
         this -> pins[6 - 1] = this -> pins[4 - 1] & this -> pins[5 - 1];    // Gate 2 (inputs on pins 4, 5; output on pin 6)
@@ -16,5 +16,5 @@ void ANDGateIC<T> :: simulate() {
     } 
     
     else
-        throw runtime_error("AND Gate IC is not powered on.");// handling exceptions, this will throw an error if the VCC and the Ground are not conneted to the IC
+        throw runtime_error("AND Gate IC is not powered on."); // handling exceptions, this will throw an error if the VCC and the Ground are not conneted to the IC
 }

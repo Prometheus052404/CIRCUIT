@@ -54,7 +54,7 @@ else()
     "exit $?\n")
 endif()
 
-# This block of code is commented out. Just use this to debug more deeply (if any errors occur) the test script.
+# This block of code is commented out. Just use this, set it to true to debug more deeply (if any errors occur) the test script.
 if(FALSE)
     # Create a shell script to run the test with debug output, Method 2
     # Replace all the below code with the else() block above if needed to debug extensively.
@@ -86,7 +86,7 @@ if(FALSE)
     exit $?
     ")
 
-    message("This will not be executed.")
+    message("This will not be executed. If you want to, then replace the 'False' with 'True in this if block")
 
   endif()
   

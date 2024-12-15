@@ -7,7 +7,7 @@ NOTGateIC<T> :: NOTGateIC() : IC<T>(14, 14, 7, "NOT") {
 
 template <typename T>
 void NOTGateIC<T> :: simulate() {
-    if (this -> powerConnected && this -> groundConnected) {
+    if ((this -> powerConnected) && (this -> groundConnected)) {
         // Inverting logic for each NOT gate
         this -> pins[2 - 1] = !this -> pins[1 - 1];   // Gate 1 (Pin 1 and Pin 2)
         this -> pins[4 - 1] = !this -> pins[3 - 1];   // Gate 2 (Pin 3 and Pin 4)

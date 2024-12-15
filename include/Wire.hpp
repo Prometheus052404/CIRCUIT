@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 template <typename T>
@@ -12,6 +13,7 @@ template <typename T>
 class Wire {
     IC<T>* sourceIC;
     int sourcePin;
+
     IC<T>* destinationIC = nullptr;
     int destinationPin;
 
@@ -19,6 +21,7 @@ public:
     IC<T>* getSourceIC() const { return sourceIC; }
     IC<T>* getDestinationIC() const { return destinationIC; }
     int getSourcePin() const { return sourcePin; }
+    
     Wire(IC<T>* srcIC, int srcPin, IC<T>* destIC, int destPin); 
     ~Wire();
 

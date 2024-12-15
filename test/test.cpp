@@ -14,9 +14,8 @@ public:
     void simulate() override {
         // Dummy implementation for testing
         // Could be empty or do a basic simulation
-        for (int i = 1; i <= this->pinCount; ++i) {
-            this->setPin(i, T(0));  // Reset all pins
-        }
+        for (int i = 1; i <= this->pinCount; ++i)
+            this -> setPin(i, T(0));  // Reset all pins
     }
 };
 
@@ -83,9 +82,8 @@ TEST_F(ICTest, SimulateMethod) {
     EXPECT_NO_THROW(intIC.simulate());
     
     // Check that all pins are reset
-    for (int i = 1; i <= intIC.getTotalPins(); ++i) {
+    for (int i = 1; i <= intIC.getTotalPins(); ++i)
         EXPECT_EQ(intIC.getPin(i), 0);
-    }
 }
 
 // Test Operator Overloading
