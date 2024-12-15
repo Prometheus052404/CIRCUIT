@@ -21,6 +21,7 @@ OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
 
 # Test-specific files excluding main.cpp from the test build process
 TEST_SOURCES = $(wildcard $(TESTDIR)/*.cpp)
+TEST_SOURCES := $(filter-out $(TESTDIR)/test_main.cpp, $(TEST_SOURCES))
 TEST_OBJECTS = $(patsubst $(TESTDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST_SOURCES))
 
 # Phony targets
