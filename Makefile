@@ -1,7 +1,6 @@
 # Compiler and flags
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -Iinclude -I/usr/include/gtest
-LDFLAGS = -L/usr/lib -lgtest -lgtest_main -pthread
 
 # Project name
 TARGET = DCSimulator
@@ -22,7 +21,8 @@ SOURCES = $(wildcard $(SRCDIR)/*.cpp) main.cpp
 
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
-# Exclude main.cpp from the test build process
+
+# Test-specific files excluding main.cpp from the test build process
 TEST_SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 TEST_OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST_SOURCES))
 TEST_OBJECTS += $(OBJDIR)/test.o
@@ -35,7 +35,7 @@ all: $(TARGET)
 
 # Link the executable
 $(TARGET): $(OBJECTS)
-	$(CXX) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
+	$(CXX) $(OBJECTS) -o $(TARGET) $(GTEST_LIBS)
 
 # Compile each .cpp file into .o file
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
@@ -45,8 +45,8 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 $(OBJDIR)/main.o: main.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Compile test.cpp in the test directory
-$(OBJDIR)/test.o: $(TESTDIR)/test.cpp | $(OBJDIR)
+# Compile test files into .o files
+$(OBJDIR)/%.o: $(TESTDIR)/%.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Create obj directory if it doesn't exist
@@ -59,7 +59,7 @@ test: $(OBJDIR)/test_bin
 
 # Build test binary
 $(OBJDIR)/test_bin: $(TEST_OBJECTS) | $(OBJDIR)
-	$(CXX) $(TEST_OBJECTS) -o $(OBJDIR)/test_bin $(LDFLAGS)
+	$(CXX) $(TEST_OBJECTS) -o $(OBJDIR)/test_bin $(GTEST_LIBS)
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
