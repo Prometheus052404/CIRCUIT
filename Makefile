@@ -53,16 +53,6 @@ $(OBJDIR)/test.o: $(TESTDIR)/test.cpp | $(OBJDIR)
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-# Test step
-# test: $(TARGET)
-# 	@echo "Running tests..."
-# 	@cp $(TESTDIR)/test_input.txt ./test_input.txt
-# 	@cp $(TESTDIR)/expected_output.txt ./expected_output.txt
-# 	./$(TARGET) < test_input.txt > $(TESTDIR)/test_output.txt
-# 	dos2unix $(TESTDIR)/test_output.txt expected_output.txt
-# 	diff $(TESTDIR)/test_output.txt expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
-# 	@rm -f test_input.txt expected_output.txt $(TESTDIR)/test_output.txt
-
 # Unit test target (exclude main.cpp for the test build)
 test: $(OBJDIR)/test_bin
 	./$(OBJDIR)/test_bin
