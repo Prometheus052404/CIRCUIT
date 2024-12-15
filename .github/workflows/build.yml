@@ -38,7 +38,7 @@ jobs:
     - name: Build with Make
       run: |
         make
-        cp /usr/src/googletest/googletest/src/gtest_main.cc test/gtest_main.cpp
+        cp /usr/src/googletest/googletest/src/gtest_main.cc tests/gtest_main.cpp
         make test
         make clean
       
