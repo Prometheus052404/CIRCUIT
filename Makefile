@@ -8,10 +8,7 @@ TARGET = DCSimulator
 # Directories
 SRCDIR = src
 OBJDIR = obj
-TESTDIR = test
-
-TEST_SRC = $(TESTDIR)/test.cpp		
-TEST_BIN = $(OBJDIR)/test.o
+TESTDIR = tests
 
 # Google Test configuration
 GTEST_LIBS = -L/usr/lib -lgtest -lgtest_main -pthread
@@ -23,9 +20,8 @@ OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
 
 # Test-specific files excluding main.cpp from the test build process
-TEST_SOURCES = $(wildcard $(SRCDIR)/*.cpp)
-TEST_OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST_SOURCES))
-TEST_OBJECTS += $(OBJDIR)/test.o
+TEST_SOURCES = $(wildcard $(TESTDIR)/*.cpp)
+TEST_OBJECTS = $(patsubst $(TESTDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST_SOURCES))
 
 # Phony targets
 .PHONY: all clean test rebuild
@@ -45,21 +41,18 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 $(OBJDIR)/main.o: main.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Create obj directory if it doesn't exist
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+	
 # Compile test files into .o files
 $(OBJDIR)/%.o: $(TESTDIR)/%.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Create obj directory if it doesn't exist
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
-
-# Unit test target (exclude main.cpp for the test build)
-test: $(OBJDIR)/test_bin
-	./$(OBJDIR)/test_bin
-
-# Build test binary
-$(OBJDIR)/test_bin: $(TEST_OBJECTS) | $(OBJDIR)
+# Unit test target & Build test binary (exclude main.cpp for the test build)
+test: $(TEST_OBJECTS) | $(OBJDIR)
 	$(CXX) $(TEST_OBJECTS) -o $(OBJDIR)/test_bin $(GTEST_LIBS)
+	./$(OBJDIR)/test_bin
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:
