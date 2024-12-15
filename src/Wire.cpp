@@ -14,7 +14,13 @@
  */
 template <typename T>
 Wire<T> :: Wire(IC<T>* srcIC, int srcPin, IC<T>* destIC, int destPin)
-    : sourceIC(srcIC), sourcePin(srcPin), destinationIC(destIC), destinationPin(destPin) {}
+    : sourceIC(srcIC), sourcePin(srcPin), destinationIC(destIC), destinationPin(destPin) {
+        if (!sourceIC)
+        throw runtime_error("Source IC cannot be null.");
+    
+        if (!destinationIC)
+            throw runtime_error("Destination IC cannot be null.");
+    }
 
 /**
  * @brief Destructor for the Wire class.

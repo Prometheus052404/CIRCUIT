@@ -200,6 +200,21 @@ void cleanup(vector<IC<T>*>& icList, vector<Wire<T>*>& wireList) {
     cout << "All resources cleaned up successfully.\n";
 }
 
+int getChoice() {
+    int choice;
+    while (true) {
+        cin >> choice;
+        if (cin.fail()) {
+            // Input is not a number, clear the error and ignore the invalid input
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number: ";
+        } else {
+            return choice;  // valid input
+        }
+    }
+}
+
 /**
  * @brief Main entry point for the digital circuit simulator.
  * 
@@ -214,15 +229,7 @@ int main() {
 
     while (true) {
         displayMenu();
-        int choice;
-        while (true) {
-            cout << "Enter your choice: ";
-            if (cin >> choice) break;
-            cout << "Invalid input. Please enter a number.\n";
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }       
-
+        int choice = getChoice(); 
 
         switch (choice) {
             case 1: // View ICs
