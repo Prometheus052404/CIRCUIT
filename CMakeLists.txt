@@ -29,11 +29,11 @@ enable_testing()
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test)
 
 # Copy test files
-configure_file(${PROJECT_SOURCE_DIR}/test/test_input.txt 
-               ${CMAKE_BINARY_DIR}/test/test_input.txt 
+configure_file(${PROJECT_SOURCE_DIR}/tests/test_input.txt 
+               ${CMAKE_BINARY_DIR}/tests/test_input.txt 
                COPYONLY)
-configure_file(${PROJECT_SOURCE_DIR}/test/expected_output.txt 
-               ${CMAKE_BINARY_DIR}/test/expected_output.txt 
+configure_file(${PROJECT_SOURCE_DIR}/tests/expected_output.txt  
+               ${CMAKE_BINARY_DIR}/tests/expected_output.txt  
                COPYONLY)
 
 # Create a shell script to run the test (no diff in Release mode)
