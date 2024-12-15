@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include "../src/IC.cpp"
 #include "../src/Wire.cpp"
 
@@ -14,9 +15,8 @@ public:
     void simulate() override {
         // Dummy implementation for testing
         // Could be empty or do a basic simulation
-        for (int i = 1; i <= this->pinCount; ++i) {
-            this->setPin(i, T(0));  // Reset all pins
-        }
+        for (int i = 1; i <= this->pinCount; ++i)
+            this -> setPin(i, T(0));  // Reset all pins
     }
 };
 
@@ -83,9 +83,8 @@ TEST_F(ICTest, SimulateMethod) {
     EXPECT_NO_THROW(intIC.simulate());
     
     // Check that all pins are reset
-    for (int i = 1; i <= intIC.getTotalPins(); ++i) {
+    for (int i = 1; i <= intIC.getTotalPins(); ++i)
         EXPECT_EQ(intIC.getPin(i), 0);
-    }
 }
 
 // Test Operator Overloading
@@ -137,9 +136,4 @@ TEST_F(ICTest, InvalidWireConnection) {
     
     // Wire to nullptr should throw
     EXPECT_THROW(Wire<int>(&sourceIC, 2, nullptr, 3), runtime_error);
-}
-
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

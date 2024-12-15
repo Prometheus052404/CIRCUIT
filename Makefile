@@ -1,12 +1,6 @@
 # Compiler and flags
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -Iinclude -I/usr/include/gtest
-LDFLAGS = -L/usr/lib -lgtest -lgtest_main -pthread
-
-# # Vcpkg Google Test paths 
-# VCPKG_ROOT = C:/DevTools/vcpkg
-# GTEST_INCLUDE = $(VCPKG_ROOT)/installed/x64-windows/include
-# GTEST_LIB = $(VCPKG_ROOT)/installed/x64-windows/lib
 
 # Project name
 TARGET = DCSimulator
@@ -14,28 +8,22 @@ TARGET = DCSimulator
 # Directories
 SRCDIR = src
 OBJDIR = obj
-TESTDIR = test
-
-TEST_SRC = $(TESTDIR)/test.cpp		
-TEST_BIN = $(OBJDIR)/test.o
+TESTDIR = tests
 
 # Google Test configuration
-# GTEST_LIBS = -L$(GTEST_LIB) -lgtest -lgtest_main -pthread
 GTEST_LIBS = -L/usr/lib -lgtest -lgtest_main -pthread
-
-# Compiler flags with Google Test include path
-# CXXFLAGS += -I$(GTEST_INCLUDE)
 
 # Source files and object files
 SOURCES = $(wildcard $(SRCDIR)/*.cpp) main.cpp
 
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 OBJECTS := $(patsubst main.cpp, $(OBJDIR)/main.o, $(OBJECTS))
-# Exclude main.cpp from the test build process
 
-TEST_SOURCES = $(wildcard $(SRCDIR)/*.cpp)
-TEST_OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST_SOURCES))
-TEST_OBJECTS += $(OBJDIR)/test.o
+# Test-specific files excluding main.cpp from the test build process
+TEST_SOURCES = $(wildcard $(TESTDIR)/*.cpp)
+TEST_SOURCES := $(filter-out $(TESTDIR)/test_main.cpp, $(TEST_SOURCES))
+TEST_OBJECTS = $(patsubst $(TESTDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST_SOURCES))
+
 # Phony targets
 .PHONY: all clean test rebuild
 
@@ -44,7 +32,7 @@ all: $(TARGET)
 
 # Link the executable
 $(TARGET): $(OBJECTS)
-	$(CXX) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
+	$(CXX) $(OBJECTS) -o $(TARGET) $(GTEST_LIBS)
 
 # Compile each .cpp file into .o file
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
@@ -54,31 +42,18 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 $(OBJDIR)/main.o: main.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Compile test.cpp in the test directory
-$(OBJDIR)/test.o: $(TESTDIR)/test.cpp | $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
 # Create obj directory if it doesn't exist
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
+	
+# Compile test files into .o files
+$(OBJDIR)/%.o: $(TESTDIR)/%.cpp | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Test step
-# test: $(TARGET)
-# 	@echo "Running tests..."
-# 	@cp $(TESTDIR)/test_input.txt ./test_input.txt
-# 	@cp $(TESTDIR)/expected_output.txt ./expected_output.txt
-# 	./$(TARGET) < test_input.txt > $(TESTDIR)/test_output.txt
-# 	dos2unix $(TESTDIR)/test_output.txt expected_output.txt
-# 	diff $(TESTDIR)/test_output.txt expected_output.txt && echo "All tests passed!" || echo "Tests failed!"
-# 	@rm -f test_input.txt expected_output.txt $(TESTDIR)/test_output.txt
-
-# Unit test target (exclude main.cpp for the test build)
-test: $(OBJDIR)/test_bin
+# Unit test target & Build test binary (exclude main.cpp for the test build)
+test: $(TEST_OBJECTS) | $(OBJDIR)
+	$(CXX) $(TEST_OBJECTS) -o $(OBJDIR)/test_bin $(GTEST_LIBS)
 	./$(OBJDIR)/test_bin
-
-# Build test binary
-$(OBJDIR)/test_bin: $(TEST_OBJECTS) | $(OBJDIR)
-	$(CXX) $(TEST_OBJECTS) -o $(OBJDIR)/test_bin $(LDFLAGS)
 
 # Clean up build files, i.e. Clean target to remove object files and the executable
 clean:

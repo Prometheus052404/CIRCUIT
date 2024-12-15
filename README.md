@@ -253,6 +253,7 @@ To exit the simulator, choose the `Exit` option from the menu.
 DigitalLogicSimulator/
 ├── include/
 │   ├── IC.hpp
+│   ├── Wire.hpp
 │   ├── CustomExceptions.hpp
 │   ├── ANDGateIC.hpp
 │   ├── ORGateIC.hpp
@@ -260,20 +261,21 @@ DigitalLogicSimulator/
 │   ├── XORGateIC.hpp
 │   ├── NANDGateIC.hpp
 │   ├── NORGateIC.hpp
-│   ├── XNORGateIC.hpp
-│   └── Wire.hpp
+│   └── XNORGateIC.hpp
 ├── src/
+│   ├── IC.cpp
+│   ├── Wire.cpp
 │   ├── ANDGateIC.cpp
 │   ├── ORGateIC.cpp
 │   ├── NOTGateIC.cpp
 │   ├── XORGateIC.cpp
 │   ├── NANDGateIC.cpp
 │   ├── NORGateIC.cpp
-│   ├── XNORGateIC.cpp
-│   └── Wire.cpp
+│   └── XNORGateIC.cpp
 ├── test/
 │   ├── test_input.txt
-│   └── expected_output.txt
+│   ├── expected_output.txt
+│   └── test.cpp
 ├── .github/workflows
 │   └── build.yml
 ├── main.cpp

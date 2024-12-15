@@ -25,7 +25,7 @@ IC<T> :: IC(int pinCount, int vccPin, int groundPin, const string& name)
 template <typename T>
 int IC<T> :: getTotalPins() const {
         return pinCount;
-    }
+}
 
 /**
  * @brief Connects the VCC pin of the IC.
@@ -73,6 +73,7 @@ template <typename T>
 void IC<T> :: setPin(int pin, T value) {
     if ((pin >= 1) && (pin <= pinCount))
         pins[pin - 1] = value;
+
     else
         throw out_of_range("Invalid pin number");
 }
@@ -89,6 +90,7 @@ template <typename T>
 T IC<T> :: getPin(int pin) const {
     if ((pin >= 1) && (pin <= pinCount))
         return pins[pin - 1];
+
     else
         throw out_of_range("Invalid pin number");
 }
@@ -105,6 +107,7 @@ template <typename T>
 T IC<T> :: operator[](int pinNumber) {
     if ((pinNumber >= 0) && (pinNumber < pinCount))
         return pins[pinNumber-1];
+
     else
         throw out_of_range("Invalid pin number");
 }
@@ -120,10 +123,11 @@ T IC<T> :: operator[](int pinNumber) {
  */
 template <typename T>
 void IC<T> :: operator()(int pinOut, IC<T>& otherIC, int pinIn) {
-    if (pinOut < 1 || pinOut > pinCount || pinIn < 1 || pinIn > otherIC.getTotalPins())
+    if ((pinOut < 1) || (pinOut > pinCount) || (pinIn < 1) || (pinIn > otherIC.getTotalPins()))
             throw out_of_range("Invalid pin connection");
-        otherIC.setPin(pinIn, getPin(pinOut));
-    }
+
+    otherIC.setPin(pinIn, getPin(pinOut));
+}
 
 /**
  * @brief Operator overload to connect the IC to VCC or GND using the += operator.
@@ -136,6 +140,7 @@ template <typename T>
 IC<T>& IC<T> :: operator += (const string& connection) {
     if (connection == "VCC")
         connectVCC();
+        
     else if (connection == "GND")
         connectGround();
 
