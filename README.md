@@ -272,10 +272,18 @@ DigitalLogicSimulator/
 │   ├── NANDGateIC.cpp
 │   ├── NORGateIC.cpp
 │   └── XNORGateIC.cpp
-├── test/
+├── tests/
 │   ├── test_input.txt
 │   ├── expected_output.txt
-│   └── test.cpp
+│   ├── ICWireTest.cpp
+│   ├── ANDGateICTest.cpp
+│   ├── ORGateICTest.cpp
+│   ├── NOTGateICTest.cpp
+│   ├── XORGateICTest.cpp
+│   ├── NANDGateICTest.cpp
+│   ├── NORateICTest.cpp
+│   ├── XNORGateICTest.cpp
+│   └── test_main.cpp
 ├── .github/workflows
 │   └── build.yml
 ├── main.cpp
